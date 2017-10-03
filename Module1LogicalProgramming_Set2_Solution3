@@ -1,0 +1,218 @@
+#include<stdio.h>		//for scanf() and printf()
+#include<string.h>		//using string functions
+struct student_record	//create structue 
+{
+ char name[20];
+ int year;
+ char department[5];
+ float cgpa;
+}
+stud[10],temp;
+void operation1(struct student_record stud[],int total)	//function definition
+{
+ int i,particular_year;
+ printf("Enter the particular year");
+ scanf("%d",&particular_year);
+ for(i=0;i<total;i++)
+ {
+  if(stud[i].year==particular_year)
+  {
+  printf("Name:%s\n",stud[i].name);
+  }
+ }
+}
+void operation2(struct student_record stud[],int total)	//funtion definition
+{
+ int i;
+ char particular_department[5];
+ printf("Enter the particular department");
+ scanf("%s",&particular_department);
+ for(i=0;i<total;i++)
+ {
+  if(strcmp(stud[i].department,particular_department)==0)
+  {
+  printf("Name:%s\n",stud[i].name);
+  }
+ }
+ }
+ void operation3(struct student_record stud[],int total)	//function definition
+ {
+  int i,highest_cgpa=0;
+  highest_cgpa=stud[0].cgpa;
+  for(i=0;i<total;i++)
+  {
+   if(highest_cgpa<stud[i+1].cgpa)
+   {
+    highest_cgpa=stud[i+1].cgpa;
+   }
+  }
+  for(i=0;i<total;i++)
+  {
+   if(highest_cgpa==stud[i].cgpa)
+   {
+    printf("Name %s",stud[i].name);
+    printf("\nYear %d",stud[i].year);
+    printf("\nDepartment %s",stud[i].department);
+    printf("\ncgpa %2.f",stud[i].cgpa);
+   }
+  }
+ } 
+ void operation4(struct student_record stud[],int total)	//function definition
+ {
+  int i,high_cgpa=0,value[10],j=0;
+  char dept[5];
+  printf("Eneter dept:");
+  scanf("%s",&dept);
+  for(i=0;i<total;i++)
+  {
+   if(strcmp(stud[i].department,dept)==0)
+   {
+    value[j]=i;
+    j++;
+   }
+  }
+  high_cgpa=stud[value[0]].cgpa;
+  for(i=0;i<j;i++)
+  {
+   if(high_cgpa<stud[value[i+1]].cgpa)
+   { 
+    high_cgpa=stud[value[i+1]].cgpa;
+   }
+  }
+  for(i=0;i<total;i++)
+  {
+   if(high_cgpa==stud[i].cgpa)
+   {
+    printf("Name %s",stud[i].name);
+    printf("\nYear %d",stud[i].year);
+    printf("\nDepartment %s",stud[i].department);
+    printf("\ncgpa %.2f",stud[i].cgpa);
+   }
+  } 
+ }
+ void operation5(struct student_record stud[],int total)	//function definition
+ {
+  char nam_man[20];
+  int i;
+  printf("Enter name");
+  scanf("%s",&nam_man);
+  for(i=0;i<total;i++)
+  {
+   if(strcmp(stud[i].name,nam_man)==0)
+   {
+    printf("Name %s",stud[i].name);
+    printf("\nYear %d",stud[i].year);
+    printf("\nDepartment %s",stud[i].department);
+    printf("\ncgpa %.2f",stud[i].cgpa);
+   }
+  }
+ }
+ void operation6(struct student_record stud[],int total)	//function definition
+ {
+  int i;
+  for(i=0;i<total;i++)
+  {
+   printf("Name %s",stud[i].name);
+   printf("\nYear %d",stud[i].year);
+   printf("\nDepartment %s",stud[i].department);
+   printf("\ncgpa %.2f",stud[i].cgpa);
+  }
+ }
+ void operation7(struct student_record stud[],int total)	//function definition
+ {
+  char nam_man[20];
+  int i;
+  printf("Enter name");
+  scanf("%s",&nam_man);
+  for(i=0;i<total;i++)
+  {
+   if(strcmp(stud[i].name,nam_man)==0)
+   {
+    stud[i].cgpa=stud[i].cgpa+0.5;
+    printf("Updated CGPA value is %.2f",stud[i].cgpa);
+   }
+  }
+ }
+ void main()
+ {
+  int total,i,j,operation;	//variable declaration
+  float dummy;
+  printf("Enter the no. of students");
+  scanf("%d",&total);                 //read the values
+  printf("Enter student information\n");
+  for(i=0;i<total;i++)
+  {
+   printf("Student %d\n",i+1);
+   printf("Name:");
+   scanf("%s",stud[i].name);
+   printf("Year:");
+   year:
+   scanf("%d",&stud[i].year);
+   if(stud[i].year<1)
+   {
+    printf("Enter valid year");
+    goto year;
+   }
+   printf("Department:");
+   scanf("%s",&stud[i].department);
+   printf("CGPA:");
+   cgpa:
+   scanf("%f",&dummy);
+   if(101<dummy<0)
+   {
+    printf("Enter valid cgpa");
+    goto cgpa;
+   }
+   stud[i].cgpa=dummy;
+  }
+  for(i=0;i<total-1;i++)
+  {
+   for(j=i;j<total;j++)
+   {
+    if(strcmp(stud[i].name,stud[j].name)>0)
+    {
+     temp=stud[i];
+     stud[i]=stud[j];
+     stud[j]=temp;
+    }
+   }
+  }
+  do		//using do loop
+  {
+   i=1;
+   printf("\nEnter the operation:\n1.Display name of the students from a particular year \n2.Display name of the student from a particular department\n3.Display all details of the student having the highest CGPA
+   \n4.Display all details of the student from a particular department having the highest CGPA\n5.Display all details of a particular student\n6.Display all details of all students
+   \n7.Update CGPA of a particular Student\n 8.Exit");
+   scanf("%d",&operation);
+   switch(operation)
+   { 
+   case 1:
+   operation1(stud,total);	//function call
+   break;
+   case 2:
+   operation2(stud,total);	//function call
+   break;
+   case 3:
+   operation3(stud,total);	//function call
+   break;
+   case 4:
+   operation4(stud,total);	//function call
+   break;
+   case 5:
+   operation5(stud,total);	//function call
+   break;
+   case 6:
+   operation6(stud,total);	//function call
+   break;
+   case 7:
+   operation7(stud,total);	//function call
+   break;
+   case 8:
+   printf("Thank you");
+   break;
+   default: printf("Please choose correct option");
+   break;
+   }
+   i++;
+   }while(operation!=8);
+  }	//main
