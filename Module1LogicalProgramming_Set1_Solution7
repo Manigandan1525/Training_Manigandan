@@ -1,0 +1,38 @@
+#include<stdio.h>           //for scanf() and printf()
+int a(int cash,int notes[],int total[])     //function definition
+ {
+  int i;
+  for(i=0;i<3;i++)
+  {
+   if(cash>=notes[i])
+    {
+     total[i]=cash/notes[i];
+     cash=cash-(total[i]*notes[i]);
+    }
+  }
+  for(i=0;i<3;i++)
+  {
+   printf("\nTotal number of %d rupees note is %d",notes[i],total[i]);
+  }
+return 0;
+}
+void main()
+{
+  int cash,notes[3]={100,50,10},total[3]={0};
+  printf("Enter withdraw amount:");
+  read:
+  scanf("%d",&cash);        //read the value
+  if(cash<1)
+  {
+   printf("please enter valid amount:");
+   goto read;         //use goto operation
+  }
+  if(cash%10!=0)
+  {
+   printf("Entered amount cannot be dispensed");
+  }
+  else
+  {
+   a(cash,notes,total);       //function call
+  }
+}  //main
