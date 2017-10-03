@@ -1,0 +1,15 @@
+main( )
+  {
+  int a, b ;
+  a = -4 - -4 ;
+  b = -4 - - ( - 4 ) ;
+  printf ( "a = %d b = %d", a, b ) ;
+  }
+ 
+ output:
+    a= 0  b= -8
+  Explanation:
+    a= -4 - -4     b = -4 - - ( - 4 )
+    a= -4 +4       b = -4 + (- 4 )
+    a= 0           b = -4 - 4
+                   b = -8 
