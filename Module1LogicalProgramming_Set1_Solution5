@@ -1,4 +1,4 @@
-5. A C variable cannot start with
+A C variable cannot start with
   (1) A special symbol other than underscore
   (2) A number
   (3) An alphabet
