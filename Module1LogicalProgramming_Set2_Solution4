@@ -1,0 +1,36 @@
+#include<stdio.h>		//for scanf() and printf()
+ int recurse(int[] ,int ,int);	//function declaration
+ void main()
+ {
+  printf("Enter the number of elements in array:");
+  scanf("%d",&count);
+  for(i=0;i<count;i++)
+  {
+   scanf("%d",&a[i]);           //read the values
+  }
+  if(count==0)
+  {
+   printf("Empty array");
+  }
+  else
+  {
+   max=a[count-1];
+   max=recurse(a,count-2,max);
+   printf("The MAximum element is %d",max);
+  }
+ }	//main
+ int recurse(int array[],int count,int max)		//function definition
+ {
+  if(count>=0)
+  {
+   if(array[count]>max)
+   {
+   max=array[count];
+   }
+   return(recurse(array,count-1,max));
+  }
+  else
+  {
+   return max;
+  }
+ }
