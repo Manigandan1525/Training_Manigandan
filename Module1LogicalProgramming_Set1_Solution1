@@ -1,0 +1,25 @@
+#include<stdio.h>           //for scanf() and printf()
+float interest(int principle,int no_of_years,float rate)   //function definition
+ {
+    return((principle*no_of_years*rate)/100);
+ }         //simple_interest
+void main()
+{
+  int principle,no_of_years;
+  float rate,simple_interest;
+  read:
+  printf("Enter the principle amount:" );	
+  scanf("%d",&principle);		                //read the values
+  printf("Enter the no. of years:");
+  scanf("%d",&no_of_years);
+  printf("Enter the rate of interest:");
+  scanf("%f",&rate);
+  if(principle<0||no_of_years<0||rate<0)	    //condition check
+    {
+      printf("You Entered value is wrong,please try again\n");
+      goto read;		    //use goto operation	
+    }
+  printf("%d\n%d\n%f",principle,no_of_years,rate);
+  simple_interest=interest(principle,no_of_years,rate);   //function call
+  printf("%.2f",simple_interest);
+}     //main
