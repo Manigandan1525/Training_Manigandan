@@ -1,0 +1,36 @@
+#include<stdio.h>        //for scanf() and printf()
+void words(char string[])	//function definition
+{
+ int i,vowels,consonants,digits,white_space;	//variable declaration
+ vowels=consonants=digits=white_space=0;
+ for(i=0;string[i]!='\0';i++)
+ {
+  if(string[i]=='a'||string[i]=='e'||string[i]=='i'||string[i]=='o'||string[i]=='u'||string[i]=='A'||string[i]=='E'||string[i]=='I'||string[i]=='O'||string[i]=='U')
+  {
+   vowels++;	//find vowels in string
+  } 
+  else if((string[i]>='a'&&string[i]<='z')||(string[i]>='A'&&string[i]<='Z'))
+  {
+   consonants++;	//find consonants in string
+  }
+  else if(string[i]>='0'&&string[i]<='9')
+  {
+   digits++;		//find digits in string
+  }
+   else if(string[i]==' ')
+  {
+  white_space++;	//find white space in string
+  }
+ }
+ printf("Vowels:%d",vowels);
+ printf("\nConsonants:%d",consonants);
+ printf("\nDigits:%d",digits);
+ printf("\nWhite space:%d",white_space);
+}
+void main()
+{
+ char string[100];	       //variable declaration
+ printf("Enter the string:");
+ scanf("%[^\n]",string);      //read the string
+ words(string);	    	//function call
+ }	//main
