@@ -1,0 +1,41 @@
+#include<stdio.h>         //for scanf() and printf()
+int odd_even(int number,int total_count)    //function definition
+ {
+  int i;
+  for(i=1;i<total_count;i++)
+  {
+   if(i%2==1)       //condition check
+   {
+    number=number+2;
+    printf("\t%d",number);
+   }
+   if(i%2==0)
+   {
+    number=number+1;
+    printf("\t%d",number);
+   }
+  }
+return 0;
+}
+void main()
+{
+ int num,count=0;
+ printf("Enter the starting Odd number:");
+ read:
+ scanf("%d",&num);        //read the values
+ if(num%2==0)
+ {
+ printf("you entered number is wrong,please enter odd number");
+ goto read;         //use goto operation
+ }
+ count:
+ printf("Enter total numbers count:");
+ scanf("%d",&count);
+ if(count<1)
+ {
+ printf("Enter valid count");
+ goto count;        //use goto operation
+ }
+ printf("%d",num);
+ odd_even(num,count);       //function call
+}     //main
