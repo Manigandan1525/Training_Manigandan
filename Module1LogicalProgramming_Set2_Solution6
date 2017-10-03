@@ -1,0 +1,151 @@
+#include<stdio.h>	//for scanf() and printf()
+#include<stdlib.h>	//using library functions
+#include<string.h>	//using string function
+struct record	//create structure
+{
+ char name[20];
+ char designation[20];
+ char mobile_no[15];
+}emp[10];
+void add(struct record emp,int *number)	//function definition
+{
+ FILE *fptr;
+ fptr=fopen("employee.txt","w");
+ printf("Enter the employee name");
+ scanf("%[^\n]s",&emp[number]->name);
+ fwrite(&emp[number]->name,50,1,fp);
+ printf("Enter the emp designation");
+ scanf("%[^\n]s",&emp[number]->designation);
+ fwrite(&emp[total]->designation,50,1,fp);
+ printf("Enter the mobile no");
+ scanf("%s",&emp[number]->mobile_no);
+ fwrite(&emp[number]->mobile_no,sizeof(int),1,fp);
+ fclose(fptr);
+ number++;
+}
+void update(struct record emp,int *number)		//function definition
+{
+ char update_name,update_number;
+ FILE *fptr1;
+ FILE *fptr2;
+ int count;
+ printf("Enter the name to update");
+ scanf("%s",&update_name);
+ for(i=0;i<number;i++)
+ {
+  if(strcmp(emp[i].name,update_name)!=0)
+  {
+   count++;
+  }
+ }
+ if(count==i)
+ {
+  printf("Name:%s is not available in file",update_name);
+ }
+ FILE *fptr1;
+ fptr1=fopen("employee.txt","r");
+ printf("Enter the employee name");
+ scanf("%[^\n]s",&emp[number]->emp_name);
+ fwrite(&emp[number]->emp_name,50,1,fp);
+ fclose(fptr1);
+ printf("Enter the number to update");
+ scanf("%s",&update_number);
+ for(i=0;i<number;i++)
+ {
+  if(strcmp(emp[i].number,update_number)!=0)
+  {
+   count++;
+  }
+ }
+ if(count==i)
+ {
+  printf("Number:%s is not available in file",update_number);
+ }
+ fptr2=fopen("employee.txt","r");
+ printf("Enter the employee number");
+ scanf("%[^\n]s",&emp[number]->mobile_no);
+ fwrite(&emp[number]->mobile_number,50,1,fp);
+ fclose(fptr1);
+}
+void delete(struct record epm, int *number)		//function definition
+{
+ char delete_name;
+ FILE *fptr1;
+ FILE *fptr2;
+ for(i=0;i<number;i++)
+ {
+  if(strcmp(emp[i].name,delete_name)==0)
+  {
+   printf("Name:%s is available in file",delete_name);
+  }
+ }
+ fptr1=fopen("employee.txt","r");
+ fptr2=fopen("tempfile","w");
+ while(fread(&emp[number],sizeof(emp[number]),1,fptr1))
+ {
+  if(strcmp(emp[i].name,delete_name)!=0)
+  {
+   fwrite(&emp[number],sizeof(emp[number],1,fptr2);
+  }
+ }
+ fclose(fptr1);
+ fclose(fptr2);
+ fptr1=fopen("employee.txt","r");
+ fptr2=fopen("tempfile","w");
+ while(fread(&emp[number],sizeof(emp[number]),1,fptr2))
+ fwrite(&emp[number],sizeof[emp[number],1,fptr1);
+ printf("\nRecord Deleted");
+ fclose(fptr1);
+ fclose(fptr2);
+} 
+void main()
+{
+ int *number,option,record;	//variable declaration
+ FILE *fptr;
+ fptr=fopen("employee.txt","w");		//file open
+ if(fptr==NULL)
+ {
+  printf("Error");
+  exit(1);
+ }
+ printf("Enter number of employee details:");
+ scanf("%d",&number);
+ for(i=0;i<number;i++)
+ {
+  printf("Enter the employee name");
+  scanf("%[^\n]s",&emp[i]->emp_name);
+  fwrite(&emp[i]->emp_name,50,1,fp);
+  printf("Enter the emp designation");
+  scanf("%[^\n]s",&emp[i]->emp_designation);
+  fwrite(&emp[i]->emp_designation,50,1,fp);
+  printf("Enter the mobile no");
+  scanf("%s",&emp[i]->emp_mbl_no);
+  fwrite(&emp[i]->emp_mbl_no,sizeof(int),1,fp);
+ }
+ fclose(fptr);
+ do()     //use do loop
+ {
+  printf("Select your option\n");
+  printf("1.Add \n 2.Update \n 3.Delete \n4.Exit");
+  scanf("%d",&option)
+  switch(option)    //using switch case
+  {
+  case 1:
+  add(emp,&number);		//function call
+  break;
+  case 2:
+  update(emp,&number);	//function call
+  break;
+  case 3:
+  delete(emp,&number);	//function call
+  break;
+  case 4:
+  printf("Exit \nThank you");
+  exit(1);
+  break;
+  default:
+  printf("Please select correct option");
+  break();
+  }
+ while(1)
+}	  //main()
