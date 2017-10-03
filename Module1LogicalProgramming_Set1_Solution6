@@ -1,0 +1,28 @@
+#include<stdio.h>         //for scanf() and printf()
+int digit(int num)        //function definition
+{
+ int rem,sum=0;
+ while(num>0)          
+{
+ rem=num%10;
+ sum=sum+rem;
+ num=num/10;
+}
+return sum;
+}       //sum of digits
+void main()
+{
+ int number,sum_of_digits;
+ printf("Enter the number:");
+ read:
+ scanf("%d",&number);       //read the values
+ if(number<0)
+ {
+  printf("Please enter the number greater than 0:");
+  goto read;        //use goto operation
+ }
+ sum_of_digits=digit(number);      //function call
+ printf("Sum of the digits is:");
+ printf("%d",sum_of_digits);
+}    //main
+
