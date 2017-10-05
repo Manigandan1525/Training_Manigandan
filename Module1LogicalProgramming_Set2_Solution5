@@ -1,69 +1,52 @@
-#include<stdio.h>		//for scanf and printf
-int invert(int x,int p,int n)	//function definition
+#include<stdio.h>               //for scanf() and printf()
+int decimal_to_binary(x_value)  //function definition
 {
- int length=0,binary_value[20],i,value=0;
- while(x>0)
- {
-  binary_value[length]=x%2;
-  x=x/2;
-  length++;
+ int i,bits=0,binary_value[20],position,n_bits;
+ while(x_value>0)
+ {                               //decimal to binary convertion
+  binary_value[bits]=x_value%2;
+  x_value=x_value/2;
+  bits++;
  }
- for(i=length-1;i>=0;i--)
+printf("Decimal to binary:\n");
+for(i=bits-1;i>=0;i--)
+{
+    printf("%d ",binary_value[i]);
+}
+printf("\nEnter the starting position: ");
+scanf("%d",&position);                   //read starting position
+printf("Enter the number of bits to change:");
+scanf("%d",&n_bits);
+if(bits>position)                  //position to change the bit
+{
+ for(i=position-1;i<(position+n_bits)-1;i++)
  {
-  printf("X value bit:%d",binary_value[i]);
- }
- if(length>p)
- {
-  for(i=p-1;i<(p+n)-1;i++)
+  if(binary_value[i]==0)
   {
-   if(binary_value[i]==0)
-   {
-    binary_value[i]=binary_value[i]+1;
-   }
-   else
-   {
-    binary_value[i]*=0;
-   }
+   binary_value[i]=binary_value[i]+1;
+  }
+  else
+  {
+   binary_value[i]*=0;
   }
  }
- printf("\n");
- for(i=length-1;i>=0;i--)
- {
-  printf("Inverted bit:%d",binary_value[i]);
- }
- for(i=length-1;i>=0;i--)
- {
-  value=value*2+binary_value[i];
- }
- printf("\nInverted decimal value is %d",value);
- return 0;
 }
-void main()
+printf("Inverted bit:\n");
+for(i=bits-1;i>=0;i--)
+  {
+   printf("%d ",binary_value[i]);
+  }
+}
+main()
 {
- int x_value,position,n_bits;	//variable declaration
- printf("Enter the x value:");
- new:
- scanf("%d",&x_value);        //read the values
- if(x_value<1)
- {
-  printf("valid to enter");
-  goto new;
- }
- printf("Enter the begining position:");
- position:
- scanf("%d",&position);
- if(position<1)
- {
-  printf("Enter valid position");
-  goto position;          //use goto operation
- }
- printf("Enter no. of bits to change");
- bit:
- scanf("%d",&n_bits);
- if(n_bits<1)
- {
-  printf("Enter valid bit");
-  goto bit;               //use goto operation
- }
- invert(x_value,position,n_bits);		//function call
- }	// main
+int x_value;
+printf("Enter the x value: ");
+value:
+    scanf("%d",&x_value);           //read the value
+    if(x_value<0)
+    {
+    printf("Please enter the valid value");
+    goto value;                     //use goto operation
+    }
+decimal_to_binary(x_value);         //function call
+}       //main
