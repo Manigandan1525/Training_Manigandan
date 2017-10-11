@@ -1,0 +1,19 @@
+15. This Examplecomputes the wrong valuefor size. Why?
+   #include <iostream.h>
+   #define SIZE 10;
+   #define FUDGE SIZE -2;
+   main ()
+   {
+   int size; // Size to really use
+   size = FUDGE;
+   cout << "Size is " << size << '\n';
+   return (0);
+   }
+
+   Answer:
+   #define SIZE 10;
+   #define FUDGE SIZE -2;
+   This program the preprocessor to macro define and (;)semicolon to end the statement. Therefore they assigned
+   the value and deos not to change. If we remove the semicolon to solve the problem.
+   #define SIZE 10
+   #define FUDGE SIZE -2	//This gives the correct answer
