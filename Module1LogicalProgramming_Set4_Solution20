@@ -1,0 +1,20 @@
+20. In Example the first loop works, but the second fails. Why?
+    #include <iostream.h>
+    main ()
+    {
+    short int i;
+    // Works
+    for (i = 0x80; i !=0; i = (i >> 1)) {
+    cout << "i is " << hex << i << dec << '\n';
+    }
+    signed char ch;
+    // Fails
+    for (ch = 0x80; ch!=0; ch = (ch >> 1))
+    cout << "ch is " << hex << int(ch) << dec << '\n';
+    }
+    return (0);
+    }
+
+    Answer:
+    In this program char ch which have the size is 8 bits, Here(ch>>1)using rightshift opertor 
+    it increaments the bit size, so the program fails.
