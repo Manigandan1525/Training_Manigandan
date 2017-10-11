@@ -1,0 +1,21 @@
+6.Auto:
+   Auto is the default storage class.Its scope is limited to the block where it is defined.
+   The initial value that it contains is any garbage value.  It is stored in the memory.
+   The keyword used to define a variable with the automatic storage class is ‘auto’.
+   Syntax: auto datatype variable;
+  
+  Register: 
+   Its scope is limited to the block where it is defined.The initial value that it contains is any garbage value.
+   It is stored in the CPU registers.The keyword used to define a variable with the register storage class is ‘register’.
+   Syntax: register datatype variable; 
+
+  Static: 
+   Its scope is limited to the block where it is defined.The initial value that it contains is zero.
+   It is stored in the memory.The keyword used to define a variable with the static storage class is ‘static’.
+   Syntax static datatype variable;
+
+  Extern: 
+   Its scope is global. The initial value that it contains is zero.It is stored in the memory.When 
+   declared outside all the functions in the program its declaration does need to be preceded by 
+   the keyword.The keyword used to define a variable with the external storage class is ‘extern’.
+   syntax: extern datatype variable;
