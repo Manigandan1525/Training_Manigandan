@@ -1,0 +1,13 @@
+7. Why does the following program fail to print the correct zip code? What does
+   it print instead?
+   long int zip; // Zip code
+   main()
+   {
+   zip = 02137L; // Use the zip code for Cambridge MA
+   cout << "New York's zip code is: " << zip << '\n';
+   return(0);
+   }
+
+   Answer:
+   zip=02137L; 0 represents the octal, so this value convert decimal to octal and zip is integer type so does not take 'L'.
+   Output: New York's zip code is: 1119
