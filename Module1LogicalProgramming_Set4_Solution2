@@ -1,0 +1,18 @@
+2. Why does this program print ''The value of 1/3 is 0"? What must be done to this
+   program to fix it?
+   #include <iostream.h>
+   float answer; // the result of the divide
+   main ()
+   {
+    answer = 1/3;
+    cout << "The value of 1/3 is " << answer << "\n";
+    return (0);
+   }
+
+   Answer:
+    answer=1/3;
+    Here 1 and 3 are integers,so evaluation gives integer result.
+    The value of 1/3 is 0
+    When we change 1 and 3 as float type it gives correct answer
+    answer=(float)1/(float)3;
+    The value of 1/3 is 0.333333
