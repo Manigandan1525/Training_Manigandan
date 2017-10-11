@@ -1,0 +1,26 @@
+11. What is the error in this program?
+    #include <iostream.h>
+    /*
+    * This program produces a Celsius to Fahrenheit conversion
+    * chart for the numbers 0 to 100.
+    *
+    * Restrictions:
+    * This program deals with integers only, so the
+    * calculations may not be exact.
+    */
+    // The current Celsius temperature we are working with
+    int celsius;
+    main() {
+    for (celsius = 0; celsius <= 100; ++celsius);
+    cout << "Celsius: " << celsius <<
+    " Fahrenheit: " << ((celsius * 9) / 5 + 32) << '\n';
+    return (0);
+    }
+    When run, this program prints out:
+    Celsius: 101 Fahrenheit: 213
+    and nothing more. Why?
+
+    Answer:
+    for (celsius = 0; celsius <= 100; ++celsius);  // (;)semicolon is the error
+    In this program the end of  for loop we give the (;)semicolon, so the loop executes continously and when the condition failed to exit the loop.
+    after the variable having the value is printed.
