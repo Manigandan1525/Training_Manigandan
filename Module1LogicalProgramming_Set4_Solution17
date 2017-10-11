@@ -1,0 +1,22 @@
+17. What does the above program output? (Try running it on your machine.). Why did it output what it did? 
+    (Try checking the output of the preprocessor.)
+    #include <iostream.h>
+    #define SQR(x) ((x) * (x))
+    main ()
+    {
+    int counter; /* Counter for loop */
+    counter = 0;
+    while (counter < 5)
+    cout << "x << counter + 1 <<
+    " x squared" << SQR(++counter) << '\n';
+    return (0);
+    }
+
+    Answer:
+    In this program SQR(++counter) expression have problem.
+    SQR(++counter)=(( ++counter ) * ( ++counter )
+    This expression counter increaments 2times. so the output is changed.
+    Output:
+    x 3 x squared 4
+    x 5 x squared 16
+    x 7 x squared 36
