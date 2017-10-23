@@ -1,0 +1,50 @@
+10.	Why does this example  fail when we delete the variable list_ptr? The
+program seems to get upset when it tries to call clear at line 20.
+
+1 #include <iostream.h>
+2 #include <stdlib.h>
+3
+4 class list {
+5 private:
+6 int item; // Current item number
+7
+8 public:
+9 virtual void clear() = 0;
+10
+11 void next_item(void) {
+12 ++item;
+13 }
+14
+15 list(void) {
+16 item = 0;
+17 }
+18
+19 virtual ~list() {
+20 clear();
+21 }
+22 };
+23
+24 class list_of_integers : public list {
+25 public:
+26 int array[100]; // Place to store the items
+27
+28 void clear(void) {
+29 int i; // Array index
+30
+31 for (i = 0; i < 100; ++i)
+32 array[i] = 0;
+33 }
+34 };
+35
+36 main()
+37 {
+38 list_of_integers *list_ptr = new list_of_integers;
+39
+40 // Cause problems
+41 delete list_ptr;
+42 list_ptr = NULL;
+43 return (0);
+44 }
+
+Answer:
+In this program destructor creates in virtual function. So never call the pure virtual functions from a destructor.
