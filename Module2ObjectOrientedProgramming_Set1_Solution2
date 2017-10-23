@@ -1,0 +1,38 @@
+2.	What is the output of the below code snippet. Provide necessary explanation to support your view.
+
+#include <iostream>
+class BaseClass
+{
+    int x;
+public:
+    int y;
+    void set(int a,int b)
+    {
+        x=a;
+        y=b;
+    }
+    void show()
+    {
+        std::cout<<"X ="<<x;
+    }
+};
+class DerivedClass :public BaseClass
+{
+    int i;
+};
+int main()
+{
+    int baseSize,derivedSize;
+    BaseClass bc;
+    DerivedClass dc;
+    derivedSize=sizeof(dc);
+    baseSize=sizeof(bc);
+    std::cout<<"Size of BaseClass "<<baseSize << "\n";
+    std::cout<<"Size of DerivedClass "<<derivedSize << "\n";
+    return 0;
+}
+
+Output: Size of BaseClass 8  
+        Size of DerivedClass 12
+Explaination: Size of int is 4 bytes, In base class have two integer so the size is 8 and derived class have one integer type.
+In this program derived class derives the base class, so 4+8=12.
