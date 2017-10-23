@@ -1,0 +1,58 @@
+8.	Valid username will :
+[1]have a length between 6 to 9 [6 and 9 inclusive]
+[2] contain only upper and/or lowercase alphabets
+
+Complete the methodcheckUsernameso that it validates the username.
+•	If the username length is less than 2, throw "BadLengthException"
+•	For other cases, "checkUsername" method shall return true or false.
+
+Answer:
+#include<iostream>
+#include<string>
+using namespace std;
+bool checkUsername(string username)
+{
+    int i,count=0;
+    for(i=0;username[i]!='\0';i++)
+    {
+        if(isalpha(username[i]))
+        {
+            count++;
+        }
+    }
+if((6<=username.size())&&(username.size()<=9)&&(count==username.size()))
+{
+return true;
+}
+else
+{
+    return false;
+}
+}
+int main()
+{
+string username;
+
+cin>> username;
+try{
+if(username.size()<2)
+{
+throw string("BadLengthException");
+}
+
+bool isValid = checkUsername(username);
+    if(isValid)
+    {
+       cout<< "Valid";
+    }
+    else
+    {
+       cout<< "Invalid";
+    }
+}
+catch(string Exception)
+{
+    cout<<"\n"<<"BadLengthException";
+}
+return 0;
+}
