@@ -1,0 +1,9 @@
+6.	Brief the difference between Class and Struct. Also, provide some information on when to use them.
+
+Class: Class is a reference type and its object is created on the heap memory.
+Class can create a subclass that will inherit parent's properties and methods.
+A class has all members private by default.Sizeof empty class is 1 Byte
+
+Structure: structure is a value type and its object is created on the stack memory.
+Structure does not support the inheritance.A struct is a class where members are public by default.
+Sizeof empty structure is 0 Bytes
