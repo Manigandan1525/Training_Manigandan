@@ -1,0 +1,97 @@
+4.	A group of  geometric figures have a position and an orientation in a three dimensional space, and a function to drawthemself. 
+The geometric objects are: Point, Line, Plane, Cube, Cuboid. 
+Implementation not required
+(a) Draw a likely class hierarchy.
+(b) Write the base class with required attributes and methods.
+(c) Explain why, by using a base class and hierarchy, the process of including a new
+subclass, such as a Ellipsoid, is impressivelyeasy.
+
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class point
+{
+public:
+    int x_point;
+    int y_point;
+    void getpoint_value();
+    void display_point();
+};
+class line
+{
+private:
+    int x1_point;
+    int y1_point;
+public:
+    void getline_value();
+    void display_line();
+};
+class plane
+{
+private:
+    int x[4];
+    int y[4];
+    int iteration;
+public:
+    void getplane_value()
+    {
+        for(iteration=0;iteration<4;iteration++)
+        {
+            cin>>x[iteration]>>y[iteration];
+        }
+    }
+    void display_plane();
+};
+class cube
+{
+private:
+    int x[8];
+    int y[8];
+    int iteration;
+public:
+    void getcube_value()
+    {
+       for(iteration=0;iteration<8;iteration++)
+        {
+            cin>>x[iteration]>>y[iteration];
+        }
+    }
+    void display_cube();
+};
+class cuboid
+{
+private:
+    int x[8];
+    int y[8];
+    int iteration;
+public:
+    void getcuboid_value()
+    {
+       for(iteration=0;iteration<8;iteration++)
+        {
+            cin>>x[iteration]>>y[iteration];
+        }
+    }
+    void display_cuboid();
+};
+class Ellipsoid:public point
+{
+private:
+    int z_point;
+public:
+    void getEllipsoid_value()
+    {
+        cin>>x_point>>y_point>>z_point;
+    }
+    void display_Ellipsoid();
+};
+int main()
+{
+    point P;
+    line L;
+    plane Pl;
+    cube C;
+    cuboid Cu;
+    Ellipsoid E;
+    return 0;
+}
