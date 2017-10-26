@@ -1,0 +1,45 @@
+1.	Write down different classes for a computer soccer game. Implementation not required (Classes and Objects)
+
+Answer:
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class team
+{
+public:
+    void select_your_team();
+    void select_opposite_team();
+};
+class players:public team
+{
+    void pick_your_players();
+    void select_opposite_players();
+};
+class ground_and_whether:public players
+{
+    void select_ground();
+    void select_climate();
+};
+class ball:public ground_and_whether
+{
+    void ball_position();
+    void goal();
+};
+class referee:public ball
+{
+    void referee_position();
+    void give_score();
+};
+class game_strategy:public referee
+{
+    void action();
+    void run();
+    void kickball();
+    void forward();
+    void defender();
+};
+int main()
+{
+    game_strategy game;
+    return 0;
+}
