@@ -1,0 +1,69 @@
+5.	Write a simple program which loops over a list of user data (tuples containing a username, email and age) and adds each user to a directory if the user is at least 16 years old. You do not need to store the age. Write a simple exception hierarchy which defines a different exception for each of these error conditions:
+•	the username is not unique
+•	the age is not a positive integer
+•	the user is under 16
+•	the email address is not valid (a simple check for a username, the @ symbol and a domain name is sufficient)
+Raise these exceptions in your program where appropriate. Whenever an exception occurs, your program should move onto the next set of data in the list. Print a different error message for each different kind of exception.
+You can consider an email address to be valid if it contains one @ symbol and has a non-empty username and domain name – you don’t need to check for valid characters. You can assume that the age is already an integer value.
+
+Answer:
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class user
+{
+private:
+    string username;
+    string email;
+    int age;
+public:
+    void getuser();
+    void check_condition();
+};
+void user::getuser()
+{
+    cout<<"Enter user name"<<"\n";
+    cin>>username;
+    cout<<"Enter email"<<"\n";
+    cin>>email;
+    cout<<"Enter age"<<"\n";
+    cin>>age;
+}
+void user::check_condition()
+{
+ try{
+ if(age<0)
+    {
+        throw age;
+    }
+ if(age<16)
+ {
+     throw "BelowAgeError";
+ }
+ }
+catch(int age)
+    {
+        cout<<"InvalidAgeError";
+    }
+    catch(string e)
+    {
+        cout<<"BelowAgeError";
+    }
+}
+int main()
+{
+    user u[10];
+    int total_user,iteration;
+    cout<<"Enter total user count"<<"\n";
+    cin>>total_user;
+    for(iteration=0;iteration<total_user;iteration++)
+    {
+        cout<<"Enter user "<<iteration+1<<" Details"<<"\n";
+        u[iteration].getuser();
+    }
+      for(iteration=0;iteration<total_user;iteration++)
+    {
+       u[iteration].check_condition();
+    }
+    return 0;
+}
