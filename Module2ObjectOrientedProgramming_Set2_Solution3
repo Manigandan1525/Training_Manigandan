@@ -1,0 +1,38 @@
+3.	Explain encapsulation with following:  Implementation not required
+Mobile Phone and Mobile Phone Manufacturer
+
+Answer:
+Mobile phone users knows only how to use the mobile and mobile phone manufactures knows how to design and 
+develop the mobile.
+
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class Mobilephone
+{
+public:
+    void calling();
+    void sms();
+    void bluetooth();
+    void music();
+private:
+    int IMEI;
+    int profile;
+    int number;
+};
+class Mobilephone_Manufacturer
+{
+public:
+    int display;
+    int pin;
+    int memeorycard;
+    void mobile_parts();
+    void design();
+    void mobile_develop();
+};
+int main()
+{
+    Mobilephone M1;
+    Mobilephone_Manufacturer M2;
+    return 0;
+}
