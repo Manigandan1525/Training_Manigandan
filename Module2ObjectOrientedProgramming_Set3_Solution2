@@ -1,0 +1,64 @@
+2.	Design classes for a discount system which can be used in places that provides services 
+and sells any products. The system should offer 3 types of memberships: Premium, Gold 
+and Silver. Premium, gold and silver members receive a discount of 20%, 15%, and 
+10%, respectively, for all services provided. Customers without membership receive no 
+discount. All members receives a flat 10% discount on products purchased (this might change in future).
+
+Answer:
+#include<iostream>
+using namespace std;
+const int product1=12000;           //products price
+const int product2=10000;
+const int product3=25000;
+const int service=500;
+class discount_system
+{
+private:
+    int count_product1=0,count_product2=0,count_product3=0,count_serviceproduct=0;  
+    int amount=0,offer=0,option=0;
+
+public:
+
+    void select_products()
+    {
+        cout<<"select your product and service"<<"\n";    //product count
+        cout<<"select product1 count:";
+        cin>>count_product1;
+        cout<<"select product2 count:";
+        cin>>count_product2;
+        cout<<"select product3 count:";
+        cin>>count_product3;
+        cout<<"select service product count:";
+        cin>>count_serviceproduct;
+        amount=count_product1*product1+count_product2*product2+count_product3*product3+count_serviceproduct*service;
+    }
+    void discount()
+    {
+    cout<<"select your Membership \n1.Premium \n2.Gold \n3.Silver \n4.Not Membership";
+    cin>>option;
+    switch(option)        //using switch
+    {
+    case 1:cout<<"Premium membership gives 20% offer \n";
+           offer=amount*20/100;
+           break;
+    case 2:cout<<"gold membership gives 15% offer \n";
+           offer=amount*15/100;
+           break;
+    case 3:cout<<"Silver membership gives 10% offer \n";
+           offer=amount*10/100;
+           break;
+    case 4:cout<<"No offer receive";
+           break;
+     }
+     cout<<"Purchased product amount"<<"\n";
+     amount=amount-((amount*10/100)+offer);
+     cout<<amount;
+    }
+};      //class
+int main()
+{
+    discount_system dis;
+    dis.select_products();
+    dis.discount();
+    return 0;
+}
