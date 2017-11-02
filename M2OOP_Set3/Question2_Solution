@@ -1,0 +1,100 @@
+2.	Design classes for a discount system which can be used in places that provides services and 
+sells any products. The system should offer 3 types of memberships: Premium, Gold and Silver.
+Premium, gold and silver members receive a discount of 20%, 15%, and 10%, respectively, for all 
+services provided. Customers without membership receive no discount. All members receives a flat 
+10% discount on products purchased (this might change in future).
+
+Answer:
+#include<iostream>
+using namespace std;
+class product_and_service
+{
+public:
+    string product_name[];
+    string serviceproduct[];
+    int product_quantity[];
+    int product_price[];
+    int serviceproduct_price[];
+    void product_details();
+    void  service_details();
+};
+class discount_system
+{
+public:
+    float productdiscount_premium = 0.1;
+    float productdiscount_gold = 0.1;
+    float productdiscount_silver = 0.1;
+    float servicediscount_premium = 0.2;
+    float servicediscount_gold = 0.15;
+    float servicediscount_silver = 0.1;
+    int membership;
+    void customermembership()
+    {
+        cout<<"select your Membership\n1.Premium\n2.Gold\n3.Silver\n";
+        cin>>membership;
+    }
+    void product_discount()
+    {
+        switch(membership)
+        {
+        case 1:
+            cout<<productdiscount_premium;
+            break;
+        case 2:
+            cout<<productdiscount_gold;
+            break;
+        case 3:
+            cout<<productdiscount_silver;
+            break;
+        }
+    }
+    void service_discount()
+    {
+        switch(membership)
+        {
+        case 1:
+            cout<<servicediscount_premium;
+            break;
+        case 2:
+            cout<<servicediscount_gold;
+            break;
+        case 3:
+            cout<<servicediscount_silver;
+            break;
+        }
+    }
+};
+class customer
+{
+public:
+    string customer_name;
+    int mobile_number;
+    string customer_address;
+    string customer_membership;
+    void Get_Product();
+    void Product_Discount();
+    void Get_Service();
+    void Service_Discount();
+};
+class bill
+{
+    string company_name;
+    string company_address;
+    int bill_no;
+    string date;
+    string product[];
+    string service[];
+    int total_amount;
+    void Product_cost();
+    void Service_cost();
+    void Discount();
+    void TotalBillAmount();
+};
+int main()
+{
+    product_and_service pro;
+    discount_system dis;
+    customer cs;
+    bill b;
+    return 0;
+}
