@@ -1,0 +1,61 @@
+3.	Design classes for a ticketing system for a cultural-show, where ticket rates goes up or down according to the demand.
+a.	If tickets werenot booked in the last 6 hours, the prices should fall by 5%. The ticket rates shall be resumed after 2 hours.
+
+Answer:
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class ticketing_system
+{
+public:
+    int ticket_price;
+    int show_timimg;
+    int show_duration;
+    string username;
+    string password;
+    void user_login()
+    {
+        //user can login
+    }
+    void booking_tickets()
+    {
+        //booking the tickets
+    }
+    void paid_amount()
+    {
+        //paid the amount
+    }
+    void get_ticketbooked_message()
+    {
+        //message received
+    }
+};
+class ticket_rates
+{
+    int ordinary_price;
+    int discount_price;
+    int booking_time;
+    int current_time;
+    int difference_time;
+    void last_booking_time()
+    {
+        difference_time=current_time-booking_time;
+    }
+    void demand_ticket()
+    {
+        if(difference_time>=6)
+        {
+            discount_price=ordinary_price*0.05;
+        }
+    }
+    void ordinary_rates()
+    {
+        //after 2hours the the discount price change into ordinary price;
+    }
+};
+int main()
+{
+    ticketing_system tt;
+    ticket_rates tr;
+    return 0;
+}
