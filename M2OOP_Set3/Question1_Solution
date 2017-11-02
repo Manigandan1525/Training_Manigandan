@@ -13,6 +13,7 @@ You can also assume that each song is associated with a single album, but that m
 song (which are included in different albums) can exist.
 
 Answer:
+
 #include <iostream>     //using input and output
 using namespace std;
 class song
@@ -95,3 +96,5 @@ int main()
     playlist p;
     return 0;
 }
+In this program have the relationship is one to many relationship. here one to many relationship between the
+songs and artist,songs and albums and songs and playlist.
