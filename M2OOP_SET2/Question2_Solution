@@ -1,0 +1,44 @@
+2.	Explain abstraction for the following example: Implementation not required. 
+You have an object Mobile Phone and have 3 mobile phones as following:-
+N 142 (Features:- Calling, SMS)
+N 271 (Features:- Calling, SMS, FM Radio, MP3, Camera)
+B (Features:-Calling, SMS, FM Radio, MP3, Camera, Video Recording, Reading E-mails)
+(Example could be in JAVA or C++)
+
+Answer:
+#include<iostream>
+using namespace std;
+class basic_features
+{
+public:
+    int number;
+    string profile;
+    void calling();
+    void sms();
+};
+class Mobile_N142:public basic_features
+{
+};
+class Mobile_N271:public basic_features
+{
+public:
+    void FM_Radio();
+    void mp3();
+    void camera();
+};
+class Mobile_b:public basic_features
+{
+public:
+    void FM_Radio();
+    void mp3();
+    void camera();
+    void video_recording();
+    void Email();
+};
+int main()
+{
+    Mobile_N142 n1;
+    Mobile_N271 n2;
+    Mobile_b bb;
+    return 0;
+}
