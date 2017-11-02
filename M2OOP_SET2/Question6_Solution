@@ -1,0 +1,117 @@
+6.	In this exercise you will write a program which estimates the cost of a telephone call, and also implement unit tests for the program.
+The phone company applies the following rules to a phone call to calculate the charge:
+•	The minimum before-tax charge of 59.400 cents applies to all calls to any destination up to 50km away and 89.000 cents for any destination further than 50km away.
+•	Calls are charged on a per-second basis at 0.759 cents per second (<= 50km) and 1.761 cents per second (> 50km)
+•	Off-peak seconds (from 19:00:00 to 06:59:59 the next day) are given a discount of 40% off (<= 50km) and 50% off (> 50km) off the above rate
+•	If the type of call was share-call AND the destination is more than 50km away, there is a discount of 50% off after any off-peak discount (minimum charge still applies). However, share-calls over shorter distances are not discounted.
+•	Finally, VAT of 14% is added to give the final cost.
+Your program should ask for the following input:
+•	The starting time of the call (to be split up into hours, minutes and seconds)
+•	The duration of the call (to be split up into minutes and seconds)
+•	Whether the duration was more than 50km away
+•	Whether the call was share-call
+Hint: you can prompt the user to input hours, minutes and seconds at once by asking for a format likeHH:MM:SS and splitting the resulting string by the delimiter. You may assume that the user will enter valid input, and that no call will exceed 59 minutes and 59 seconds.
+Your program should output the following information:
+•	The basic cost
+•	The off-peak discount
+•	The share-call discount
+•	The net cost
+•	The VAT
+•	The total cost
+i.	Before you write the program, identify the equivalence classes and boundaries that you will need to use in equivalence testing and boundary analysis when writing black-box tests. 
+ii.	Write the program. Remember that you will need to write unit tests for this program – the calculation that you need to test should be placed in some kind of unit, like a function, which can be imported from outside of the program and used independently of the rest of the code (like the user input)!
+iii.	Now implement the black-box tests by writing a unit test module for your program. Run all the tests, and make sure that they pass! 
+
+Answer:
+#include <iostream>
+using namespace std;
+class telephone_call
+{
+    double min_tax=59.400;
+    double max_tax=89.000;
+    double min_charge=0.759;
+    double max_charge=1.761;
+    double min_offpeak=0.4;
+    double max_offpeak=0.5;
+    double min_sharecall=0;
+    double max_sharecall=0.5;
+    double VAT=0.14;
+public:
+    int start_hour,start_min,start_sec;
+    int dur_min,dur_sec;
+    int total_sec;
+    char duration;
+    char share_call;
+    double basic_cost;
+    double offpeak_discount;
+    double sharecall_discount;
+    double net_cost;
+    double VAT_tax;
+    double Total_cost;
+    void getdata()
+    {
+        cout<<"Enter starting time";
+        cin>>start_hour>>start_min>>start_sec;
+        cout<<start_hour<<":"<<start_min<<":"<<start_sec;
+        cout<<"Enter duration\n";
+        cin>>dur_min>>dur_sec;
+        cout<<"Duration is "<<dur_min<<"minutes "<<dur_sec<<"seconds\n";
+        cout<<"Whether the duration was more than 50km away(y/n)";
+        cin>>duration;
+        cout<<"Whether the call was share-call(y/n)";
+        cin>>share_call;
+    }
+    void calculations()
+    {
+        total_sec=60*dur_min+dur_sec;
+
+        switch(duration)
+        {
+            case 'y':
+                basic_cost=total_sec*max_charge;
+                if(7>=start_hour&&start_hour>=19)
+                {
+                    offpeak_discount=basic_cost*max_offpeak;
+                }
+                if(share_call=='y')
+                {
+                    sharecall_discount=max_sharecall*basic_cost;
+                }
+                net_cost=basic_cost+offpeak_discount+sharecall_discount+max_charge;
+                VAT_tax=net_cost*VAT;
+                Total_cost=net_cost+VAT_tax;
+                break;
+            case 'n':
+                basic_cost=total_sec*min_charge;
+                if(7>=start_hour&&start_hour>=19)
+                {
+                    offpeak_discount=basic_cost*min_offpeak;
+                }
+                if(share_call=='y')
+                {
+                    sharecall_discount=min_sharecall*basic_cost;
+                }
+                net_cost=basic_cost+offpeak_discount+sharecall_discount+min_charge;
+                VAT_tax=net_cost*VAT;
+                Total_cost=net_cost+VAT_tax;
+                break;
+         }
+        }
+        void display()
+        {
+            cout<<"Basic cost "<<basic_cost<<"\n";
+            cout<<"Off-peak discount "<<offpeak_discount<<"\n";
+            cout<<"Share call discount "<<sharecall_discount<<"\n";
+            cout<<"Net cost "<<net_cost<<"\n";
+            cout<<"VAT Tax "<<VAT_tax<<"\n";
+            cout<<"Total Cost "<<Total_cost<<"\n";
+        }
+};
+int main()
+{
+    telephone_call t;
+    t.getdata();
+    t.calculations();
+    t.display();
+    return 0;
+}
