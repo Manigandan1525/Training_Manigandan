@@ -1,0 +1,39 @@
+3.	Explain encapsulation with following:  Implementation not required
+Mobile Phone and Mobile Phone Manufacturer
+
+Answer:
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class Mobilephone
+{
+public:
+    void calling();
+    void sms();
+    void bluetooth();
+    void music();
+    void games();
+    void contacts();
+private:
+    int IMEI;
+    int profile;
+    int number;
+    int sim;
+};
+class Mobilephone_Manufacturer
+{
+public:
+    int display;
+    int pin;
+    int memeorycard;
+    int button;
+    void mobile_parts();
+    void design();
+    void mobile_develop();
+};
+int main()
+{
+    Mobilephone M1;
+    Mobilephone_Manufacturer M2;
+    return 0;
+}
