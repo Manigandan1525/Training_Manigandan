@@ -28,34 +28,34 @@ string employee::getEmp_name()
 	return this->Emp_name;
 }
 
-void employee::setBirth_date(int birth_date)
+void employee::setAge(int age)
 {
-	this->Birth_date = birth_date;
+	this->Age = age;
 }
 
-int employee::getBirth_date()
+int employee::getAge()
 {
-	return this->Birth_date;
+	return this->Age;
 }
 
-void employee::setBirth_month(int birth_month)
+void employee::setGender(string gender)
 {
-	this->Birth_month = birth_month;
+	this->Gender = gender;
 }
 
-int employee::getBirth_month()
+string employee::getGender()
 {
-	return this->Birth_month;
+	return this->Gender;
 }
 
-void employee::setBirth_year(int birth_year)
+void employee::setMobile_Number(int number)
 {
-	this->Birth_date = birth_year;
+	this->Mobile_Number = number;
 }
 
-int employee::getBirth_year()
+int employee::getMobile_Number()
 {
-	return this->Birth_year;
+	return this->Mobile_Number;
 }
 
 void employee::setAddress(string address)
@@ -78,26 +78,6 @@ string employee::getDepartment()
 	return this->Department;
 }
 
-void employee::setJoining_date(int joining_date)
-{
-	this->Joining_date = joining_date;
-}
-
-int employee::getJoining_date()
-{
-	return this->Joining_date;
-}
-
-void employee::setJoining_month(int joining_month)
-{
-	this->Joining_month = joining_month;
-}
-
-int employee::getJoining_month()
-{
-	return this->Joining_month;
-}
-
 void employee::setJoining_year(int joining_year)
 {
 	this->Joining_year = joining_year;
@@ -108,6 +88,16 @@ int employee::getJoining_year()
 	return this->Joining_year;
 }
 
+void employee::setEdu_Qualification(string qualification)
+{
+	this->Edu_Qualification = qualification;
+}
+
+string employee::getEdu_Qualification()
+{
+	return this->Edu_Qualification;
+}
+
 void employee::setEmp_status(string status)
 {
 	this->Emp_status = status;
@@ -116,6 +106,16 @@ void employee::setEmp_status(string status)
 string employee::getEmp_status()
 {
 	return this->Emp_status;
+}
+
+void employee::setProject_name(string project_name)
+{
+	this->Project_name = project_name;
+}
+
+string employee::getProject_name()
+{
+	return this->Project_name;
 }
 
 void employee::setPay(int pay)

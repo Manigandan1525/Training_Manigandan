@@ -11,15 +11,15 @@ class employee
 private:
 	int Emp_id;
 	string Emp_name;
-	int Birth_date;
-	int Birth_month;
-	int Birth_year;
+	int Age;
+	string Gender;
+	int Mobile_Number;
 	string Address;
 	string Department;
-	int Joining_date;
-	int Joining_month;
 	int Joining_year;
+	string Edu_Qualification;
 	string Emp_status;
+	string Project_name;
 	int Pay;
 
 
@@ -30,24 +30,24 @@ public:
 	int getEmp_id();
 	void setEmp_name(string name);
 	string getEmp_name();
-	void setBirth_date(int birth_date);
-	int getBirth_date();
-	void setBirth_month(int birth_month);
-	int getBirth_month();
-	void setBirth_year(int birth_year);
-	int getBirth_year();
+	void setAge(int age);
+	int getAge();
+	void setGender(string gender);
+	string getGender();
+	void setMobile_Number(int number);
+	int getMobile_Number();
 	void setAddress(string address);
 	string getAddress();
 	void setDepartment(string dept);
 	string getDepartment();
-	void setJoining_date(int joining_date);
-	int getJoining_date();
-	void setJoining_month(int joining_month);
-	int getJoining_month();
 	void setJoining_year(int year);
 	int getJoining_year();
+	void setEdu_Qualification(string qualification);
+	string getEdu_Qualification();
 	void setEmp_status(string status);
 	string getEmp_status();
+	void setProject_name(string project_name);
+	string getProject_name();
 	void setPay(int pay);
 	int getPay();
 	
