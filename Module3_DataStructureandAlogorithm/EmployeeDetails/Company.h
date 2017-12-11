@@ -1,14 +1,16 @@
 #ifndef Company_HEADER
 #define Company_HEADER
 #include"employee.h"
+#include "queue_concept.h"
 #include<vector>
-#include<queue>
+//#include<queue>
 #pragma once
 class Company
 {
 private:
 	vector<employee> empname;
-	vector<employee> emp_status;
+	queue_concept queue;
+	//vector<employee> emp_status;
 	
 	
 public:
@@ -22,16 +24,15 @@ public:
 	string Update_pay();
 	int Search(int);
 	string employee_status();
-	bool isEmpty();
-	bool isFull();
+	void print();
 	//string push();
-	string pop();
+	string pop_new();
 	bool name_validation(string);
 	bool gender_validation(string);
 	bool age_validation(int);
 	bool year_validation(int);
 	bool status_validation(string);
-	string print();
+	int CheckInput();
 };
 
 #endif

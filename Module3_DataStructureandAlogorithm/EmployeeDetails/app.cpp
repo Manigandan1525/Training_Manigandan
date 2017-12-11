@@ -15,6 +15,7 @@ int main()
 	{
 		cmp.createDetails();
 	}
+	
 	do
 	{
 		result = "null";
@@ -42,12 +43,8 @@ int main()
 			   break;
 		case 6:cout << "Enter employee ID:"<<endl;
 			cmp.employee_status();
-			//result=cmp.push();
-			//cout << result;
-		
 			break;
-		case 7:cmp.pop();
-			cout << result;
+		case 7:cmp.pop_new();
 			break;
 		case 8:cmp.print();
 			break;

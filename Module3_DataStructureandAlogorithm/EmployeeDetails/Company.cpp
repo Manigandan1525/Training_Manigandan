@@ -1,17 +1,19 @@
 #include "Company.h"
-
-#include<iostream>
-#include<string>
-#include<ctype.h>
+#include "queue_concept.h"
+#include <limits>
+#include <iostream>
+#include <string>
+#include <ctype.h>
 using namespace std;
 int id=100,age,number,joining_year,pay,count,size;
+int bench_count = 0,current_employee=0;
 int front = -1, rear = -1;
 
 string name,gender,qualification;
 string address;
 string dept;
-string status,project_name;
-
+string status="project",project_name;
+queue_concept queue;
 employee emp;
 Company::Company()
 {
@@ -23,8 +25,8 @@ Company::~Company()
 }
 int Company::Search(int id)
 {
-	//cin >> search;
-	int first = 0,middle=0;
+
+	int first = 0,middle = 0;
 	int last = empname.size()-1;
 	middle = (first + last) / 2;
 	while (first <= last)
@@ -55,79 +57,76 @@ void Company::createDetails()
 {
 	++id;
 	emp.setEmp_id(id);
-	cout << "Employee name:  ";
-	name:
+	cout <<'\n'<< "Employee name:"<<"\t\t";
+	NAME:
 	cin >> name;
-	bool valid_name=name_validation(name);
-	if (valid_name == 0)
+	
+	if (!name_validation(name))
 	{
-		cout << "Enter valid name";
-		goto name;
+		cout << "Enter valid name" << "\t\t";
+		goto NAME;
 	}
 	emp.setEmp_name(name);
-	cout << "Gender:  ";
-	gender:
+	cout << "Gender:  "<<"\t\t";
+	GENDER:
 	cin >> gender;
-	bool valid_gender = gender_validation(gender);
-	if (valid_gender == 0)
+
+	if (!gender_validation(gender))
 	{
-		cout << "Enter valid gender";
-		goto gender;
+		cout << "Enter valid gender" << "\t\t";
+		goto GENDER;
 	}
 	emp.setGender(gender); 
-	cout << "Age:  ";
-	age:
+	cout << "Age:  " << "\t\t\t";
+AGE:
 	cin >> age;
-	bool valid_age = age_validation(age);
-	if (valid_age == 0)
+	 if (cin.fail())
 	{
-		cout << "Enter valid age";
-		goto age;
+		age = CheckInput();
+		
 	}
-	emp.setAge(age);
-	cout << "Mobile_Number:  ";
+	 if (age_validation(age))
+		 {
+			 emp.setAge(age);
+
+		 }
+	 else
+	 {
+		 cout << "Enter valid age" << "\t\t";
+		 goto AGE;
+	 }
+	 cout << "Mobile_Number:" << "\t\t";
 	cin >> number;
 	emp.setMobile_Number(number);
-	cout << "Address:  ";
+	cout << "Address:" << "\t\t";
 	cin >> address;
 	emp.setAddress(address);
-	cout << "Department:  ";
+	cout << "Department:" << "\t";
 	cin >> dept;
 	emp.setDepartment(dept);
-	cout << "Employee joining year:  ";
-	year:
+	cout << "Employee joining year:" << "\t\t";
+YEAR:
 	cin >> joining_year;
-	bool valid_year = year_validation(joining_year);
-	if (valid_year == 0)
+	if (!year_validation(joining_year))
 	{
-		cout << "Enter valid age";
-		goto year;
-	}
-	emp.setJoining_year(joining_year);
-	cout << "Education Qualification:  ";
-	cin >> qualification;
-	emp.setEdu_Qualification(qualification);
-	cout << "Enployee Status Project/Bench:  ";
-	status:
-	cin >> status;
-	bool valid_status = status_validation(status);
-	if (valid_status == 0)
-	{
-		cout << "Enter valid age";
-		goto status;
-	}
-	emp.setEmp_status(status);
-	if (status == "Bench" || status == "bench" || status == "BENCH")
-	{
-		project_name = "NULL";
+		cout << "Enter valid year";
+		goto YEAR;
 	}
 	else
 	{
-		cout << "Enter project name";
-		cin >> project_name;
+	emp.setJoining_year(joining_year);
 	}
+	cout << "Education Qualification:" << "\t\t";
+	cin >> qualification;
+	emp.setEdu_Qualification(qualification);
+	cout << "Employee Status" << "\n";
+	emp.setEmp_status(status);
+	
+	//bool valid_status = status_validation(status);
+    cout << "Enter project name:"<<"\t\t";
+	cin >> project_name;
 	emp.setProject_name(project_name);
-	cout << "Employee Pay:  ";
+	cout << "Employee Pay:" << "\t\t";
 	cin >> pay;
 	emp.setPay(pay);
 	empname.push_back(emp);
@@ -136,7 +135,7 @@ void Company::year()
 {
 	int get_year = 0;
 	cin >> get_year;
-	cout << "Employee Names: " << endl;
+	cout << "Employee Names:  " ;
 	for (int iteration = 0; iteration < empname.size(); iteration++)
 	{
 		if (get_year == empname[iteration].getJoining_year())
@@ -170,8 +169,8 @@ display(value);
 }
 void Company::display(int id)
 {
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
-	cout << "Employee ID:" << '\t' << empname[id].getEmp_id() << endl;
+	cout <<'\n'<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+	cout << "Employee ID:" << '\t' << '\t'<<empname[id].getEmp_id() << endl;
 	cout << "Employee Name:" << '\t' <<'\t'<< empname[id].getEmp_name() << endl;
 	cout << "Employee Age:" << '\t' <<'\t'<< empname[id].getAge() << endl;
 	cout << "Employee Gender:" << '\t' << empname[id].getGender() << endl;
@@ -183,13 +182,13 @@ void Company::display(int id)
 	cout << "Employee Status:" << '\t' << empname[id].getEmp_status() << endl;
 	cout << "Project Name:" << '\t' << '\t'<<empname[id].getProject_name() << endl;
 	cout << "Employee Pay:" << '\t' << '\t'<<empname[id].getPay() << endl;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 void Company::display()
 {
 	for (int iteration = 0; iteration < empname.size(); iteration++)
 	{
-		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		cout << "Employee ID:" << '\t' << empname[iteration].getEmp_id() << endl;
 		cout << "Employee Name:" << '\t' <<'\t'<< empname[iteration].getEmp_name() << endl;
 		cout << "Employee Age:" << '\t' << '\t'<<empname[iteration].getAge() << endl;
@@ -202,7 +201,7 @@ void Company::display()
 		cout << "Employee Status:" << '\t' << empname[iteration].getEmp_status() << endl;
 		cout << "Project Name:" << '\t' << '\t' << empname[iteration].getProject_name() << endl;
 		cout << "Employee Pay:" << '\t' << '\t'<<empname[iteration].getPay() << endl;
-		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
 	}
 
@@ -228,61 +227,47 @@ string Company::Update_pay()
 string Company::employee_status()
 {
 	cin >> id;
-	int id1 = Search(id);
-	empname[id1].setEmp_status("Bench");
-	empname[id1].setProject_name("NULL");
-	if (isFull())
-	{
-		printf("queue is full\n");
-	}
-	if (isEmpty())
-		front = rear = 0;
-	else
-		rear = (rear + 1) % empname.size();
-
-	emp_status.push_back(empname[id1]);
-
+	current_employee = Search(id);
+	int first = current_employee;
+	empname[current_employee].setEmp_status("BENCH");
+	empname[current_employee].setProject_name("NONE");
+	empname[current_employee].setDepartment("NONE");
+	queue.push(empname[current_employee]);
 	return "Employee removed from project";
 }
-string Company::pop()
+string Company::pop_new()
 {
-	cin >> id;
-	int id1 = Search(id);
-	empname[id1].setEmp_status("Project");
-	cout << "Enter project name";
-	cin >> project_name;
-	empname[id1].setProject_name(project_name);
-	if (isEmpty())
+	int id=queue.pop();
+	if (id == 0)
 	{
-		printf("queue is empty\n");
-		
+		cout << "Bench is empty";
 	}
-	else if (front == rear)
-		front = rear = -1;
 	else
 	{
-		front = (front + 1) % empname.size();
+		empname[id].setEmp_status("project");
+		string dept;
+		cout << "Enter Department";
+		cin >> dept;
+		empname[id].setProject_name(dept);
+		string project_name;
+		cout << "Enter Project_name";
+		cin >> project_name;
+		empname[id].setDepartment(project_name);
 	}
 	return "Employee to be allocated in project";
 }
 
-bool Company::isEmpty(){
-	return (front == -1 && rear == -1) ? true : false;
-}
-
-bool Company::isFull(){
-	
-	return (rear + 1) % (empname.size()) == front ? true : false;
-}
-
-
-string Company::print()
+void Company::print()
 {
-	if (!isEmpty())
+	if (queue.print())
+	{
+		cout<<"Bench is empty";
+	}
+	else
 	{
 		for (int iteration = 0; iteration < empname.size(); iteration++)
 		{
-			if (empname[iteration].getEmp_status() == "Bench" || empname[iteration].getEmp_status() == "bench" || empname[iteration].getEmp_status() == "BENCH")
+			if (empname[iteration].getEmp_status() == "BENCH")
 			{
 				cout << "Employee ID" << '\t' << '\t' << empname[iteration].getEmp_id() << endl;
 				cout << "Employee Status:" << '\t' << empname[iteration].getEmp_status() << endl;
@@ -290,38 +275,29 @@ string Company::print()
 			}
 		}
 	}
-	else
-	{
-		return "Bench is Empty";
-	}
 }
 
 
-
-/*
-string Company::push()
+int Company::CheckInput( )
 {
-	cin >> id;
-	int id1 = Search(id);
-	empname[id1].setEmp_status("Bench");
-	emp_status.push(empname[id1]);
-	return "Employee in bench";
+	int data;
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Enter correct input"<<endl;
+			cin >> data;
+		}
+		else if (!cin.fail())
+		{
+			return data;
+			break;
+		}
+	}
+	
 }
-string Company::pop()
-{
-	if (emp_status.empty())
-	{
-		return "bench is free";
-	}
-	else
-	{
-		int id = emp_status.front().getEmp_id();
-		int id1 = Search(id);
-		empname[id1].setEmp_status("Project");
-		emp_status.pop();
-		return "employee moved in project";
-	}
-}*/
 bool Company::name_validation(string name)
 {
 	int iteration = 0, count = 0;
@@ -386,9 +362,3 @@ bool Company::status_validation(string status)
 		return false;
 	}
 }
-//string Company::push()
-//{
-
-//}
-//string Company::pop()
-//{

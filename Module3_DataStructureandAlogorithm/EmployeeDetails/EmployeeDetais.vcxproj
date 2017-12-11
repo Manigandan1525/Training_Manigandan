@@ -13,11 +13,13 @@
   <ItemGroup>
     <ClInclude Include="Company.h" />
     <ClInclude Include="employee.h" />
+    <ClInclude Include="queue_concept.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="employee.cpp" />
     <ClCompile Include="app.cpp" />
+    <ClCompile Include="queue_concept.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{78532559-9522-4219-BF34-461C838B47AD}</ProjectGuid>

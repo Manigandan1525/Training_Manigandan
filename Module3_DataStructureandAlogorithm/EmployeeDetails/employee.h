@@ -40,11 +40,11 @@ public:
 	string getAddress();
 	void setDepartment(string dept);
 	string getDepartment();
-	void setJoining_year(int year);
+	void setJoining_year(int joining_year);
 	int getJoining_year();
 	void setEdu_Qualification(string qualification);
 	string getEdu_Qualification();
-	void setEmp_status(string status);
+	void setEmp_status(string);
 	string getEmp_status();
 	void setProject_name(string project_name);
 	string getProject_name();
