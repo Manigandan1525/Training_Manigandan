@@ -3,36 +3,34 @@
 #include"employee.h"
 #include "queue_concept.h"
 #include<vector>
-//#include<queue>
+
 #pragma once
 class Company
 {
 private:
 	vector<employee> empname;
 	queue_concept queue;
-	//vector<employee> emp_status;
+
 	
 	
 public:
 	Company();
 	~Company();
 	void createDetails();
-	void year();
+	void emp_year();
 	void Highest_Pay();
 	void display(int);
 	void display();
-	string Update_pay();
-	int Search(int);
-	string employee_status();
+	void Update_pay();
+	int Search(string);
+	int employee_status();
 	void print();
-	//string push();
-	string pop_new();
+	void new_status();
 	bool name_validation(string);
 	bool gender_validation(string);
 	bool age_validation(int);
 	bool year_validation(int);
-	bool status_validation(string);
-	int CheckInput();
+	int numberValidation(int);
 };
 
 #endif

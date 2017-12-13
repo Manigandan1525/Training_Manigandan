@@ -12,6 +12,6 @@ public:
 	~queue_concept();
 	int print();
 	void push(employee);
-	int pop();
+	string pop();
 };
 

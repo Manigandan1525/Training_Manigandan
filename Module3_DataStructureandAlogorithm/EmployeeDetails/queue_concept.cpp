@@ -1,6 +1,6 @@
 #include "queue_concept.h"
 
-//employee emp;
+
 queue_concept::queue_concept()
 {
 }
@@ -14,21 +14,28 @@ void queue_concept::push(employee empname)
 	rear = rear + 1;
 	bench.push_back(empname);
 }
-int queue_concept::pop()
+string queue_concept::pop()
 {
-
-	if (front >= rear)
+	//cout << bench.getEmp_id() << endl;
+	if (front >= rear && front == -1)
 	{
-		return 0;//cout << "Bench is empty";
+		cout << "Unnecessary Entry";
+		return "Empty";
+	}
+	else if (front >= rear)
+	{
+		cout << "Bench is Empty";
+		return "Empty";
 	}
 	else
 	{
 		front = front + 1;
-		int id = bench[front].getEmp_id();
+		
+		string id = bench[front].getEmp_id();
 				bench.erase(bench.begin());
 				return id;
 	}
-}
+	}
 
 
 int queue_concept::print()
@@ -45,5 +52,3 @@ int queue_concept::print()
 
 
 
-
-//emp_status.erase(emp_status.begin());

@@ -8,12 +8,12 @@ employee::~employee()
 {
 
 }
-void employee::setEmp_id(int id)
+void employee::setEmp_id(string id)
 {
 	this->Emp_id = id;
 }
 
-int employee::getEmp_id()
+string employee::getEmp_id()
 {
 	return this->Emp_id;
 }
@@ -28,16 +28,36 @@ string employee::getEmp_name()
 	return this->Emp_name;
 }
 
-void employee::setAge(int age)
+void employee::set_year(int year)
 {
-	this->Age = age;
+	this->Year = year;
 }
 
-int employee::getAge()
+int employee::get_year()
 {
-	return this->Age;
+	return this->Year;
 }
 
+
+void employee::set_month(int month)
+{
+	this->Month = month;
+}
+
+int employee::get_month()
+{
+	return this->Month;
+}
+
+void employee::set_date(int date)
+{
+	this->Date = date;
+}
+
+int employee::get_date()
+{
+	return this->Date;
+}
 void employee::setGender(string gender)
 {
 	this->Gender = gender;
@@ -48,12 +68,12 @@ string employee::getGender()
 	return this->Gender;
 }
 
-void employee::setMobile_Number(int number)
+void employee::setMobile_Number(long long number)
 {
 	this->Mobile_Number = number;
 }
 
-int employee::getMobile_Number()
+long long employee::getMobile_Number()
 {
 	return this->Mobile_Number;
 }
@@ -118,12 +138,12 @@ string employee::getProject_name()
 	return this->Project_name;
 }
 
-void employee::setPay(int pay)
+void employee::setPay(double pay)
 {
 	this->Pay = pay;
 }
 
-int employee::getPay()
+double employee::getPay()
 {
 	return this->Pay;
 }

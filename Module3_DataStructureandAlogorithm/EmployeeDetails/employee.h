@@ -4,14 +4,15 @@
 #include<string>
 #include<conio.h>
 
-//#include "employee.cpp"
 using namespace std;
 class employee
 {
 private:
-	int Emp_id;
+	string Emp_id;
 	string Emp_name;
-	int Age;
+	int Year;
+	int Month;
+	int Date;
 	string Gender;
 	int Mobile_Number;
 	string Address;
@@ -20,22 +21,26 @@ private:
 	string Edu_Qualification;
 	string Emp_status;
 	string Project_name;
-	int Pay;
+	double Pay;
 
 
 public:
 	employee();
 	~employee();
-	void setEmp_id(int id);
-	int getEmp_id();
+	void setEmp_id(string id);
+	string getEmp_id();
 	void setEmp_name(string name);
 	string getEmp_name();
-	void setAge(int age);
-	int getAge();
+	void set_year(int year);
+	int get_year();
+	void set_month(int month);
+	int get_month();
+	void set_date(int date);
+	int get_date();
 	void setGender(string gender);
 	string getGender();
-	void setMobile_Number(int number);
-	int getMobile_Number();
+	void setMobile_Number(long long number);
+	long long getMobile_Number();
 	void setAddress(string address);
 	string getAddress();
 	void setDepartment(string dept);
@@ -48,8 +53,8 @@ public:
 	string getEmp_status();
 	void setProject_name(string project_name);
 	string getProject_name();
-	void setPay(int pay);
-	int getPay();
+	void setPay(double pay);
+	double getPay();
 	
 
 };
