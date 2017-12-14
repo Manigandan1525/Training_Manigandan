@@ -6,7 +6,8 @@
 #include <ctype.h>
 using namespace std;
 int id=100,year,month,date,joining_year,count;
-float new_age,new_year;
+float new_age, new_year, birth_year, birth_month, birth_date;
+long long mob_number;
 long long number;
 string emp_id="EMP";
 double pay;
@@ -20,14 +21,13 @@ employee emp;
 Company::Company()
 {
 }
-
-
 Company::~Company()
 {
 }
+
+
 int Company::Search(string emp_id)
 {
-
 	int first = 0,middle = 0;
 	int last = empname.size()-1;
 	middle = (first + last) / 2;
@@ -37,7 +37,6 @@ int Company::Search(string emp_id)
 		{
 			return middle;
 			break;
-
 		}
 		else if (empname[middle].getEmp_id() < emp_id)
 		{
@@ -52,16 +51,16 @@ int Company::Search(string emp_id)
 	if (first > last)
 	{
 		return -1;
-
 	}
 }
+
+
 void Company::createDetails()
 {
 	++id;
 	emp_id = "EMP";
 	string sample= to_string(id);
 	emp_id = emp_id + sample;
-	
 	cout << '\n' << "Employee ID:" << "\t\t";
 	cout << emp_id << endl;
 	emp.setEmp_id(emp_id);
@@ -95,10 +94,7 @@ void Company::createDetails()
 		}
 	}
 	emp.setGender(gender); 
-	cout << "Mobile_Number:" << "\t\t";
-	cin >> number;
-	//number=numberValidation(number);
-	emp.setMobile_Number(number);
+	
 	cout << "Address:" << "\t\t";
 	cin >> address;
 	emp.setAddress(address);
@@ -112,110 +108,85 @@ void Company::createDetails()
     cout << "Enter project name:"<<"\t";
 	getline(cin>>ws, project_name);
 	emp.setProject_name(project_name);
-	cout << "Enter birth year";
-	cin >> year;
+	cout << "Enter birth year:"<<'\t';
+	cin >> birth_year;
+	int check_birthyear = int(birth_year);
+	year = validation(check_birthyear, birth_year);
 	emp.set_year(year);
-	cout << "Enter birth month";
+	cout << "Enter birth month:" << '\t';
+	cin >> birth_month;
+	int check_month = int(birth_month);
 	while (1)
 	{
-		cin >> month;
-		if (1 <= month && month <= 12)
+		
+		month = validation(check_month, birth_month);
+		if (!month_validation(month))
 		{
-			break;
+			cout << "Enter valid month:" << '\t';
+			cin >> birth_month;
+			check_month = int(birth_month);
+			continue;
 		}
 		else
 		{
-			continue;
+			break;
 		}
 	}
 	emp.set_month(month);
-	cout << "Enter birth name";
-	cin >> date;
+	cout << "Enter birth date:" << '\t';
+	cin >> birth_date;
+	int check_date = int(birth_date);
 	while (1)
 	{
-		cin >> date;
-		if (1 <= date&&date <= 31)
+		
+		date = validation(check_date, birth_date);
+		if (!date_validation(date,year,month))
 		{
-			break;
+			cout << "Enter valid date:" << '\t';
+			cin >> birth_date;
+			check_date = int(birth_date);
+			continue;
 		}
 		else
 		{
-			continue;
+			break;
 		}
 	}
 	emp.set_date(date);
-	/*cout << "Age:  " << "\t\t\t";
-	cin >> new_age;
-	int check_age = int(new_age);
+	cout << "Mobile_Number:" << "\t\t";
+	cin >> mob_number;
 	while (1)
 	{
-		if (cin.fail())
+		number = num_validation(mob_number);
+		if (!numberValidation(number))
 		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Enter valid Age: " << '\t';
-			cin >> new_age;
-			check_age = int(new_age);
-			continue;
-		}
-		else if (check_age != new_age)
-		{
-			cout << "Enter valid Age: " << '\t';
-			cin >> new_age;
-			check_age = int(new_age);
-			continue;
-		}
-
-		else if (!age_validation(new_age))
-		{
-			cout << "Enter valid Age:" << '\t';
-			cin >> new_age;
-			check_age = int(new_age);
+			cout << "Enter valid number:" << '\t';
+			cin >> mob_number;
 			continue;
 		}
 		else
 		{
-			age = new_age;
 			break;
 		}
-
 	}
-	emp.setAge(age);*/
+	emp.setMobile_Number(number);
 	cout << "Employee joining year:" << "\t";
 	cin >> new_year;
 	int check_year = int(new_year);
 	while (1)
 	{
-		if (cin.fail())
+		joining_year = validation(check_year, new_year);
+		if (!year_validation(joining_year))
 		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Enter valid year: " << '\t';
+			cout << "Enter valid joining_year:" << '\t';
 			cin >> new_year;
-			check_year = int(new_year);
-			continue;
-		}
-		else if (check_year != new_year)
-		{
-			cout << "Enter valid year: " << '\t';
-			cin >> new_year;
-			check_year = int(new_year);
-			continue;
-		}
-
-		else if (!year_validation(new_year))
-		{
-			cout << "Enter valid year:" << '\t';
-			cin >> new_year;
-			check_year = int(new_year);
+			int check_year = int(new_year);
 			continue;
 		}
 		else
 		{
-			joining_year = new_year;
 			break;
 		}
-
 	}
 	emp.setJoining_year(joining_year);
 	cout << "Employee Pay:" << "\t\t";
@@ -238,6 +209,8 @@ void Company::createDetails()
 	emp.setPay(pay);
 	empname.push_back(emp);
 }
+
+
 void Company::emp_year()
 {
 	int get_year,year_valid=0;
@@ -356,6 +329,7 @@ int Company::employee_status()
 		cout << "Employee moved to Bench" << endl;
 	}
 }
+
 void Company::new_status()
 {
 	string emp_id1=queue.pop();
@@ -396,6 +370,53 @@ void Company::print()
 	}
 }
 
+float Company::validation(int check, float new_value)
+{
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Enter valid data: " << '\t';
+			cin >> new_value;
+			check = int(new_value);
+			continue;
+		}
+		else if (check != new_value)
+		{
+			cout << "Enter valid data: " << '\t';
+			cin >> new_value;
+			check = int(new_value);
+			continue;
+		}
+		else
+		{
+			return  new_value;
+			break;
+		}
+
+	}
+}
+long long Company::num_validation(long long number)
+{
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Enter valid mobile number: " << '\t';
+			cin >> number;
+			continue;
+		}
+		else
+		{
+			return number;
+			break;
+		}
+	}
+}
 bool Company::name_validation(string name)
 {
 	int iteration = 0, count = 0;
@@ -428,13 +449,52 @@ bool Company::gender_validation(string gender)
 		return false;
 	}
 }
-int Company:: numberValidation(int number)
+
+bool Company::numberValidation(long long number)
 {
-	while (1);
+	int count = 0;
+	while (number>0)
+	{
+		number = number / 10;
+		count++;
+	}
+	if (count == 10)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
-bool Company::age_validation(int age)
+bool Company::month_validation(int month)
 {
-	if (age >= 22 && age <= 55)
+	if (1 <= month && month <= 12)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool Company::date_validation(int date,int year, int month)
+{
+	if (year%4==0 && 1<=date<=29 && month==2 )
+	{
+		return true;
+	}
+	else if (month == 2 && 1 <= date  && date <= 28)
+	{
+		return true;
+	}
+	else if ((month == 4 || month == 6 || month == 9 ||
+		month == 11) && 1 <= date && date <= 30)
+	{
+		return true;
+	}
+	else if ((month == 1 || month == 3 || month == 5 || month == 7 ||
+		month == 8 || month == 10 || month == 12) && 1 <= date && date <= 31)
 	{
 		return true;
 	}

@@ -8,49 +8,9 @@ int main()
 {
 	Company cmp;
 	char new_emp;
-
 	int option, no_of_employee, leave = 0;
 	float new_option;
-
 	cout << "Add New employees(y/n):";
-
-	/*cin >> new_emp;
-	int check_emp = new_emp;
-	while (1)
-	{
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Enter valid number: " << '\t';
-			cin >> new_emp;
-			check_emp = int(new_emp);
-			continue;
-		}
-		else if (check_emp != new_emp)
-		{
-			cout << "Enter correct option: " << '\t';
-			cin >> new_emp;
-			check_emp = int(new_emp);
-			continue;
-		}
-		else if (new_emp <=0)
-		{
-			cout << "Enter valid option:" << '\t';
-			cin >> new_option;
-			check_emp = int(new_emp);
-			continue;
-		}
-		else
-		{
-			no_of_employee = new_emp;
-			break;
-		}
-	}
-	for (int iteration = 0; iteration < no_of_employee; iteration++)
-	{
-		cmp.createDetails();
-	}*/
 	while (1)
 	{
 		cin >> new_emp;
@@ -70,16 +30,14 @@ int main()
 	}
 	do
 	{
-		cout <<'\n'<< "1. Add New Employee\n2. Display names of employee from a particular year of joining" << '\n'
-			<< "3. Display all details of employee having highest pay\n4. Display all details of all employees in ascending order"
-			<< '\n' <<"5. Update pay of a particular employee(Update pay by 5%)\n6. Enployee removed from project\n7. Allocate project\n8. Display bench employee\n9. Exit" << endl;
-
+	cout <<'\n'<< "1. Add New Employee\n2. Display names of employee from a particular year of joining" << '\n'
+	<< "3. Display all details of employee having highest pay\n4. Display all details of all employees in ascending order"
+	<< '\n' <<"5. Update pay of a particular employee(Update pay by 5%)\n6. Enployee removed from project\n7. Allocate project\n8. Display bench employee\n9. Exit" << endl;
 		cout << "\n" << "Enter your option" << endl;
 		cin >> new_option;
 		int check_option = int(new_option);
 		while (1)
 		{
-			
 			if (cin.fail())
 			{
 				cin.clear();

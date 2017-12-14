@@ -14,7 +14,7 @@ private:
 	int Month;
 	int Date;
 	string Gender;
-	int Mobile_Number;
+	long long Mobile_Number;
 	string Address;
 	string Department;
 	int Joining_year;
