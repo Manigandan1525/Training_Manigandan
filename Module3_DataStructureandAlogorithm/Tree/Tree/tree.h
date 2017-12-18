@@ -11,8 +11,10 @@ private:
 	vector<string> product_name;		//vector variable
 	tree *left;
 	tree *right;
+	
 
 public:
+	bool flag = 0;
 	Node N;
 	tree();
 	~tree();
@@ -20,7 +22,7 @@ public:
 	void set_data();
 	tree* insert_data(tree *node);
 	void display_price(tree *node);
-	void display_product(tree *node,float);
+	int display_product(tree *node,float);
 	void mirror_tree(tree *node);
 	int tree_height(tree*node);
 	int diff(tree*node);

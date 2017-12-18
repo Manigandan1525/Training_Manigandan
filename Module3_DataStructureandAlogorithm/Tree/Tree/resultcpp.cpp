@@ -2,9 +2,9 @@
 //main function
 int main()
 {
-	tree *node=NULL;		//create node
-	tree t1;
-	int option,check_option;
+	tree *node=NULL;				//create node
+	tree t1;						//create object in tree classs
+	int option,check_option,value;
 	float new_option;
 	float price;
 	do
@@ -51,9 +51,40 @@ int main()
 				break;
 		case 3: t1.display_price(node);
 				break;
-		case 4: cout << "Enter price:" << '\t';
+		case 4:
+			if (t1.flag == 0)
+			{
+				cout << "Tree is empty";
+			}
+			else
+			{
+				cout << "Enter price:" << '\t';
 				cin >> price;
-				t1.display_product(node, price);
+				while (1)
+				{
+					if (cin.fail())
+					{
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "Enter correct option: " << '\t';
+						cin >> price;
+						continue;
+					}
+					else
+					{
+						break;
+					}
+				}
+				value = t1.display_product(node, price);
+				if (value > 0)
+				{
+					cout << "The number of product is " << value << endl;
+				}
+				else
+				{
+					cout << "The given price is unmatched";
+				}
+			}
 				break;
 		case 5: exit(0);
 				break;

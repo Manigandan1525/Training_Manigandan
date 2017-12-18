@@ -43,6 +43,7 @@ tree* tree :: insert_data(tree *node)				//insert the product details in node
 		node->product_name.push_back(N.get_product());
 		node->left = NULL;
 		node->right = NULL;
+		flag = 1;
 		return node;
 	}
 	if (node->product_price == N.get_price())
@@ -151,13 +152,22 @@ tree* tree::rightright_case(tree* node)			//rotate the tree in left side
 
 void tree::mirror_tree(tree* node)				//display the mirror tree
 {
+	if (flag == 0)
+	{
+		cout << "Tree is empty";
+		return;
+	}
 	tree* temp;
 	temp = node;
 
 	if (node != NULL)
 	{
 		mirror_tree(temp->right);
-		cout << temp->product_price << '\t';
+		cout << "price: " << node->product_price << endl;
+		cout << "product: " << endl;
+		for (int index = 0; index < node->product_name.size(); index++)
+		cout << "\t" << index + 1 << ". " << node->product_name[index] << endl;
+		cout << "\n";
 		mirror_tree(temp->left);
 	}
 	if (node == NULL)
@@ -169,10 +179,20 @@ void tree::mirror_tree(tree* node)				//display the mirror tree
 void tree::display_price(tree *node)			//display the tree in inorder
 {
 
+	if (flag == 0)
+	{
+		cout << "Tree is empty";
+		return;
+	}
+
 	if (node != NULL)
 	{
 		display_price(node->left);
-		cout << node->product_price << "\t";
+		cout <<"price: "<< node->product_price << endl;
+		cout << "product: " << endl;
+		for (int index = 0; index < node->product_name.size();index++)
+		cout <<"\t"<< index+1<<". "<<node->product_name[index]<<endl;
+		cout << "\n";
 		display_price(node->right);
 	}
 	if (node == NULL)
@@ -181,20 +201,28 @@ void tree::display_price(tree *node)			//display the tree in inorder
 	}
 }
 
-void tree::display_product(tree *node, float price)			//display number of products in particular price
+int tree::display_product(tree *node, float price)			//display number of products in particular price
 {
-	if (node == NULL)
-	{
-		return;
-	}
+	int value=0;
 	if (node != NULL)
 	{
-		if (node->product_price == price)
+		
+		if (node->product_price > price)
 		{
-			cout << "The number of product is " << node->product_name.size();
-			return;
+			value = display_product(node->left, price);
 		}
-		display_product(node->left, price);
-		display_product(node->right, price);
+		else if (node->product_price < price)
+		{
+			value = display_product(node->right, price);
+		}
+		else if (node->product_price == price)
+		{
+			return node->product_name.size();
+		}
+		else
+		{
+			return 0;
+		}
 	}
+	return value;
 }
