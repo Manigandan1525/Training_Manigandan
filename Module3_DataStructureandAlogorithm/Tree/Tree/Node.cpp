@@ -4,16 +4,16 @@
 Node::Node()
 {
 }
-
-
 Node::~Node()
 {
 }
-void Node::set_price(int price)
+
+//set and get product details
+void Node::set_price(float price)	
 {
 	this->price = price;
 }
-int Node::get_price()
+float Node::get_price()
 {
 	return this->price;
 }

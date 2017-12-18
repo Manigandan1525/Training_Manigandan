@@ -1,60 +1,65 @@
-
 #include "tree.h"
+//main function
 int main()
 {
-	
-	tree *node=NULL;
-	tree t;
-	int option,price;
-
+	tree *node=NULL;		//create node
+	tree t1;
+	int option,check_option;
+	float new_option;
+	float price;
 	do
 	{
-		cout << "1. Insert product details" << endl;
+		cout << '\n'<<"1. Insert product details" << endl;
 		cout << "2. Mirror copy of tree" << endl;
-		cout << "3.sort the tree according to price" << endl;
-		cout << "4.Display number of products in given price" << endl;
+		cout << "3. sort the tree according to price" << endl;
+		cout << "4. Display number of products in given price" << endl;
 		cout << "5. Exit"<<endl;
 		cout << "\n";
-		cout << "Enter your option:  ";
-		cin >> option;
-		while (1)
+		cout << "Enter your option: "<<'\t';
+		cin >> new_option;
+		check_option = int(new_option);
+		while (1)					//validation
 		{
 			if (cin.fail())
 			{
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Enter correct option: " << '\t';
-				cin >> option;
-				continue;
-			}
-			else if (1>option && option>5)
+				cout << "Enter valid option: " << '\t';
+			cin >> new_option;
+			check_option = int(new_option);
+			continue;
+		}
+			else if (check_option != new_option)
 			{
-				cout << "Enter correct option: " << '\t';
-				cin >> option;
+				cout << "Enter valid option: " << '\t';
+				cin >> new_option;
+				check_option = int(new_option);
+				continue;
 			}
 			else
 			{
+				option = new_option;
 				break;
 			}
-		}  
-		switch (option)
+		}
+		switch (option)						//using switch case
 		{
-		case 1: t.get_data();
-				node=t.insert_data(node);
+		case 1: t1.set_data();
+				node=t1.insert_data(node);
 				break;
-		case 2: t.mirror_tree(node);
+		case 2: t1.mirror_tree(node);
 				break;
-		case 3: t.display_price(node);
+		case 3: t1.display_price(node);
 				break;
 		case 4: cout << "Enter price:" << '\t';
 				cin >> price;
-				t.display_product(node, price);
+				t1.display_product(node, price);
 				break;
-		case 5: option = 5;
-				cout << "Thank you";
+		case 5: exit(0);
 				break;
+		default: cout << "Enter valid option: " << '\t';
 		}
-	} while (option != 5);
+	} while (1);
 	cin.ignore(1000, '\n');
 	cin.get();
 	return 0;
