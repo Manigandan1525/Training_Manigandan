@@ -3,16 +3,24 @@
 #include<ctime>
 class Request
 {
-	time_t rawtime;
-	string aa;
+private:
+	string plane_id;
+	time_t request_time;
+	time_t clear_time;
+	string request_type;
+	
 	
 public:
-	Plane P;
+	
 	Request();
 	~Request();
-	void getdata()
-	{
-		P.getplaneID();
-	}
+	void setID(string);
+	string getID();
+	void setrequest_time(time_t);
+	time_t getrequest_time();
+	void setclear_time(time_t);
+	time_t getclear_time();
+	void setrequest_type(string);
+	string getrequest_type();
 };
 
