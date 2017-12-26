@@ -9,26 +9,32 @@ Queue::~Queue()
 
 void Queue::push(Request Req)
 {
-	rear = rear + 1;
+	//rear = rear + 1;
 	queue.push_back(Req);
 }
 
 void Queue::pop()
 {
-		front = front + 1;
+		//front = front + 1;
 		queue.erase(queue.begin());
 	
 }
 
 void Queue::display()
 {
-	for (int index = front; index < queue.size(); index++)
+	for (int index = 0; index < queue.size(); index++)
 	{
-		cout << queue[index].getID();
-		cout << queue[index].getrequest_time();
+		cout << queue[index].getID()<<endl;
+		cout << queue[index].getrequest_time()<<endl;
 	}
 }
-
+bool Queue::empty()
+{
+	if (queue.empty())
+		return true;
+	else
+		return false;
+}
 
 
 /*

@@ -4,6 +4,7 @@
 #include "Queue.h"
 #include<vector>
 #include<time.h>
+#include <future>  
 #include<string>
 class Airport
 {
@@ -18,11 +19,12 @@ class Airport
 	Queue takeoff;
 	vector<Request> Landing;
 	vector<Request> take_off;
-	int landing_count;
+	int landing_count=0;
+	int takeoff_count=0;
 	int start_time = 0;
 	int end_time=0;
-	int landing_completed = -1;
-	int takeoff_completed = -1;
+	int landing_requestcount = 0;
+	int takeoff_requestcount = 0;
 	
 public:
 	Airport();
@@ -34,7 +36,10 @@ public:
 	void landing_request();
 	void takeoff_request();
 	void Landing_plane();
-	void check_runway();
+	void check_runway1();
+	void check_runway2();
+	void display();
+
 
 };
 
