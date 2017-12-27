@@ -1,13 +1,17 @@
 #include "Airport.h"
 #pragma warning(disable: 4996)
+
 Airport::Airport()
 {
 }
 
-
 Airport::~Airport()
 {
 }
+
+void runwayfirst(int);
+void runwaysecond(int);
+
 void Airport::setplanedetails()
 {
 	string first = "PLANE";
@@ -25,6 +29,7 @@ void Airport::setplanedetails()
 	plane.setplaneID(ID);
 	string company_name;
 	int random_com = rand() % 2;
+	srand(time(NULL));
 	if (random_com == 0)
 	{
 	company_name = "Air Asia";
@@ -58,9 +63,6 @@ int Airport::generate_request(int check)
 	check_time = rawtime;
 	random = rand() % 25 + 5;
 	srand(time(NULL));
-	//cout << check << endl;
-	//cin >> a;
-	//system("cls");
 	while (1)
 	{
 		time_t rawtime;
@@ -70,9 +72,10 @@ int Airport::generate_request(int check)
 		if (rawtime == (check_time + random))
 		{
 			setplanedetails();
-			//cout << plane.getplaneID() << endl;
-			start_time = rawtime;
+			request.setrequest_time(rawtime);
+			cout <<"\n"<< "*********************************************************" << endl;
 			cout << "Request Created"<<endl;
+			cout << info->tm_hour << ":" << info->tm_min << ":" << info->tm_sec << endl;
 			return random;
 		}
 		else if (rawtime > (check + 120))
@@ -82,196 +85,206 @@ int Airport::generate_request(int check)
 	}
 }
 
-void Airport::requestdetails()
-{
-	request.setID(plane.getplaneID());
-	cout << request.getID()<<endl;
-	request.setrequest_time(start_time);
-	cout << request.getrequest_time()<<endl;
-}
 
 void Airport::landing_request()
 {
-	requestdetails();
+	request.setID(plane.getplaneID());
+	cout << "Plane ID: " << '\t' << request.getID() << endl;
 	request.setrequest_type("Landing");
-	cout << request.getrequest_type()<<endl;
-	req.push_back(request);
+	cout << "Request type: " << '\t'<< request.getrequest_type() << endl;
+	cout << "*********************************************************" << endl;
 	Landing.push_back(request);
 	landing.push(Landing[landing_requestcount]);
 	landing_requestcount++;
-	//landing_count++;
 }
 
 void Airport::takeoff_request()
 {
-	requestdetails();
+	request.setID(plane.getplaneID());
+	cout << "Plane ID: " << '\t' << request.getID() << endl;
 	request.setrequest_type("Takeoff");
-	cout << request.getrequest_type()<<endl;
-	req.push_back(request);
+	cout << "Request type: " << '\t' << request.getrequest_type() << endl;
+	cout << "*********************************************************" << endl;
 	take_off.push_back(request);
 	takeoff.push(take_off[takeoff_requestcount]);
 	takeoff_requestcount++;
 }
 
-void Airport::Landing_plane()
-{
-
-}
-void Airport::check_runway1( )
-{
-		//cout << Landing[landing_completed].getrequest_type();
-		if (!landing.empty())
-		{
-			if (Landing[landing_count].getrequest_type() == "Landing")
-			{
-				if (runway1 == 0)
-				{
-					cout << "Plane allocated in runway1" << endl;
-					landing_count++;
-					runway1 = 1;
-					time_t rawtime;
-					struct tm *info;
-					time(&rawtime);
-					int check1 = rawtime;
-					while (1)
-					{
-						time_t rawtime;
-						struct tm *info;
-						time(&rawtime);
-						if (rawtime == (check1 + 35))
-						{
-							runway1 = 0;
-							cout << "**********************complete*****************";
-							landing.pop();
-							break;
-						}
-					}
-				}
-		
-				else
-				{
-					check_runway1();
-				}
-			}
-		}
-		else if (!takeoff.empty())
-		{
-			cout << "1";
-			if (take_off[takeoff_count].getrequest_type() == "Takeoff")
-			{
-				cout << "1";
-				if (runway1 == 0)
-				{
-					cout << "Plane allocated in runway1" << endl;
-					takeoff_count++;
-					runway1 = 1;
-					time_t rawtime;
-					struct tm *info;
-					time(&rawtime);
-					int check1 = rawtime;
-					while (1)
-					{
-						time_t rawtime;
-						struct tm *info;
-						time(&rawtime);
-						if (rawtime == (check1 + 35))
-						{
-							runway1 = 0;
-							cout << "**********************complete*****************";
-							takeoff.pop();
-							break;
-						}
-					}
-				}
-			
-				else
-				{
-					check_runway1();
-				}
-			}
-		}
-	}
-
-void Airport::check_runway2( )
+int Airport::check_runway(int new_check)
 {
 	if (!landing.empty())
 	{
-		if (Landing[landing_count].getrequest_type() == "Landing")
+		if (runway1 == 0)
 		{
-			if (runway2 == 0)
+			runway1 = 1;
+			time_t rawtime;
+			struct tm *info;
+			time(&rawtime);
+			landing_check1 = rawtime;
+			if (new_check + 85 > rawtime)
 			{
-				cout << "Plane allocated in runway2" << endl;
+				Landing[landing_count].setclear_time(rawtime);
+				landing.pop();
 				landing_count++;
-				runway2 = 1;
-				time_t rawtime;
-				struct tm *info;
-				time(&rawtime);
-				int check2 = rawtime;
-				while (1)
-				{
-					time_t rawtime;
-					struct tm *info;
-					time(&rawtime);
-					if (rawtime == (check2 + 35))
-					{
-						runway2 = 0;
-						cout << "**********************complete2*****************";
-						landing.pop();
-						break;
-					}
-				}
+				async(runwayfirst, landing_check1);
 			}
-			else
+			return 0;
+		}
+		else if (runway2 == 0)
+		{
+			runway2 = 1;
+			time_t rawtime;
+			struct tm *info;
+			time(&rawtime);
+			landing_check2 = rawtime;
+			if (new_check + 85 > rawtime)
 			{
-				check_runway2();
+				Landing[landing_count].setclear_time(rawtime);
+				landing.pop();
+				landing_count++;
+				async(runwaysecond, landing_check2);
 			}
+			return 0;
 		}
 	}
 	else if (!takeoff.empty())
 	{
-		cout << "1";
-		if (take_off[takeoff_count].getrequest_type() == "Takeoff")
+		if (runway1 == 0)
 		{
-			if (runway2 == 0)
+			runway1 = 1;
+			time_t rawtime;
+			struct tm *info;
+			time(&rawtime);
+			takeoff_check1 = rawtime;
+			if (new_check + 85 > rawtime)
+				{
+					take_off[takeoff_count].setclear_time(rawtime);
+					takeoff.pop();
+					takeoff_count++;
+					async(runwayfirst, takeoff_check1);
+				}
+				return 0;
+			}
+			else if (runway2 == 0)
 			{
-				cout << "Plane allocated in runway2" << endl;
-				takeoff_count++;
 				runway2 = 1;
 				time_t rawtime;
 				struct tm *info;
 				time(&rawtime);
-				int check2 = rawtime;
-				while (1)
+				takeoff_check2 = rawtime;
+				if (new_check + 85 > rawtime)
 				{
-
-					time_t rawtime;
-					struct tm *info;
-					time(&rawtime);
-					if (rawtime == (check2 + 35))
-					{
-						runway2 = 0;
-						cout << "**********************complete2*****************";
-						takeoff.pop();
-						break;
-					}
+					take_off[takeoff_count].setclear_time(rawtime);
+					takeoff.pop();
+					takeoff_count++;
+					async(runwaysecond, takeoff_check2);
 				}
+				return 0;
 			}
-			else
-			{
-				check_runway2();
-			}
-		}
 	}
+	time_t rawtime;
+	struct tm *info;
+	time(&rawtime);
+	if ((landing_check1 + 35) == rawtime)
+	{
+		landing_check1 = 0;
+		runway1 = 0;
+		return 0;
+	}
+	else if ((takeoff_check1 + 35) == rawtime)
+	{
+		takeoff_check1 = 0;
+		runway1 = 0;
+		return 0;
+	}
+	if ((landing_check2 + 35) == rawtime)
+	{
+		landing_check2 = 0;
+		runway2 = 0;
+		return 0;
+	}
+	else if ((takeoff_check2 + 35) == rawtime)
+	{
+	
+		takeoff_check2 = 0;
+		runway2 = 0;
+		return 0;
+	}
+	return 0;
 }
 
 void Airport::display()
 {
-	cout << "The queue average waiting time: "<<endl;
-	cout << "landing:" << endl;
+	int count;
+	
+	cout << "Waiting request:" << endl;
 	landing.display();
-	cout << "takeoff:" << endl;
 	takeoff.display();
+	total_endtime = total_endtime - total_starttime;
+	count = landing_count + takeoff_count;
+	cout <<'\n'<< " Total landing completed: " << landing_count << endl;
+	cout << "  takeoff completed: " << takeoff_count << endl;
+	average_waitingtime = (float)total_endtime / (float)count;
+	cout << "The Average waiting time is: " << average_waitingtime<<" sec"<<endl;
 }
+
+void runwayfirst(int check)
+{
+	while (1)
+	{
+		time_t rawtime;
+		struct tm *info;
+		time(&rawtime);
+		if (rawtime == (check + 35))
+		{
+			break;
+		}
+	}
+}
+
+void runwaysecond(int check)
+{
+	while (1)
+	{
+		time_t rawtime;
+		struct tm *info;
+		time(&rawtime);
+		if (rawtime == (check + 35))
+		{
+			break;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*#include "Airport.h"
 
@@ -494,4 +507,182 @@ void Airport::check_runway()
         
     }
 }
+
+void Airport::check_runway2( )
+{
+if (!landing.empty())
+{
+if (Landing[landing_count].getrequest_type() == "Landing")
+{
+if (runway2 == 0)
+{
+cout << "Plane allocated in runway2" << endl;
+landing_count++;
+runway2 = 1;
+time_t rawtime;
+struct tm *info;
+time(&rawtime);
+int check2 = rawtime;
+while (1)
+{
+time_t rawtime;
+struct tm *info;
+time(&rawtime);
+if (rawtime == (check2 + 35))
+{
+runway2 = 0;
+cout << "**********************complete2*****************";
+landing.pop();
+break;
+}
+}
+}
+else
+{
+check_runway2();
+}
+}
+}
+else if (!takeoff.empty())
+{
+cout << "1";
+if (take_off[takeoff_count].getrequest_type() == "Takeoff")
+{
+if (runway2 == 0)
+{
+cout << "Plane allocated in runway2" << endl;
+takeoff_count++;
+runway2 = 1;
+time_t rawtime;
+struct tm *info;
+time(&rawtime);
+int check2 = rawtime;
+while (1)
+{
+
+time_t rawtime;
+struct tm *info;
+time(&rawtime);
+if (rawtime == (check2 + 35))
+{
+runway2 = 0;
+cout << "**********************complete2*****************";
+takeoff.pop();
+break;
+}
+}
+}
+else
+{
+check_runway2();
+}
+}
+}
+}
+
 */
+
+
+
+/*for (int index = 0; index < landing_count; index++)
+	{
+		cout << "start time: " << Landing[index].getrequest_time() << endl;
+		cout << "end time: " << Landing[index].getclear_time() << endl;
+		total_starttime = total_starttime + Landing[index].getrequest_time();
+		total_endtime = total_endtime + Landing[index].getclear_time();
+	}
+	for (int index = 0; index < takeoff_count; index++)
+	{
+		cout << "start time: " << take_off[index].getrequest_time() << endl;
+		cout << "end time: " << take_off[index].getclear_time() << endl;
+		total_starttime = total_starttime + take_off[index].getrequest_time();
+		total_endtime = total_endtime + take_off[index].getclear_time();
+	}
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*void Airport::check_runway1( )
+{
+		//cout << Landing[landing_completed].getrequest_type();
+		if (!landing.empty())
+		{
+			if (Landing[landing_count].getrequest_type() == "Landing")
+			{
+				if (runway1 == 0)
+				{
+					cout << "Plane allocated in runway1" << endl;
+					landing_count++;
+					runway1 = 1;
+					time_t rawtime;
+					struct tm *info;
+					time(&rawtime);
+					int check1 = rawtime;
+					while (1)
+					{
+						time_t rawtime;
+						struct tm *info;
+						time(&rawtime);
+						if (rawtime == (check1 + 35))
+						{
+							runway1 = 0;
+							cout << "**********************complete*****************";
+							landing.pop();
+							break;
+						}
+					}
+				}
+		
+				else
+				{
+					check_runway1();
+				}
+			}
+		}
+		else if (!takeoff.empty())
+		{
+			cout << "1";
+			if (take_off[takeoff_count].getrequest_type() == "Takeoff")
+			{
+				cout << "1";
+				if (runway1 == 0)
+				{
+					cout << "Plane allocated in runway1" << endl;
+					takeoff_count++;
+					runway1 = 1;
+					time_t rawtime;
+					struct tm *info;
+					time(&rawtime);
+					int check1 = rawtime;
+					while (1)
+					{
+						time_t rawtime;
+						struct tm *info;
+						time(&rawtime);
+						if (rawtime == (check1 + 35))
+						{
+							runway1 = 0;
+							cout << "**********************complete*****************";
+							takeoff.pop();
+							break;
+						}
+					}
+				}
+			
+				else
+				{
+					check_runway1();
+				}
+			}
+		}
+	}
+	*/

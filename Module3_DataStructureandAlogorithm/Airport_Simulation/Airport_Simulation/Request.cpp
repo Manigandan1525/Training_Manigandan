@@ -18,20 +18,20 @@ string Request::getID()
 	return this->plane_id;
 }
 
-void Request::setrequest_time(time_t time)
+void Request::setrequest_time(int time)
 {
 	this->request_time = time;
 }
-time_t Request::getrequest_time()
+int Request::getrequest_time()
 {
 	return this->request_time;
 }
 
-void Request::setclear_time(time_t time)
+void Request::setclear_time(int time)
 {
 	this->clear_time = time;
 }
-time_t Request::getclear_time()
+int Request::getclear_time()
 {
 	return this->clear_time;
 }

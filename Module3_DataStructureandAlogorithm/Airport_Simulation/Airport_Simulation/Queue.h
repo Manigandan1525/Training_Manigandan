@@ -5,7 +5,6 @@
 class Queue
 {
 private:
-	//int front = -1, rear = -1;
 	vector<Request> queue;
 	Request Req;
 public:
