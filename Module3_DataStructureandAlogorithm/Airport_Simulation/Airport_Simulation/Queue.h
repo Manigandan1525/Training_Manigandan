@@ -1,18 +1,19 @@
 #pragma once
-#include "Request.h"
+#include "Request.h"		// insert request class
 #include<string>
-#include<vector>
+#include<vector>			// using vector to create vector variable
 class Queue
 {
 private:
 	vector<Request> queue;
-	Request Req;
+
 public:
 	Queue();
-	~Queue();;
+	~Queue();
 	void push(Request);
-	void pop();
-	void display();
+	Request pop();
 	bool empty();
+	void display();
+
 };
 

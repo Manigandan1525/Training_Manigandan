@@ -1,6 +1,7 @@
 #include "Airport.h"
 #pragma warning(disable: 4996)
-
+Plane plane;
+Request request;
 Airport::Airport()
 {
 }
@@ -9,19 +10,16 @@ Airport::~Airport()
 {
 }
 
-void runwayfirst(int);
-void runwaysecond(int);
-
-void Airport::setplanedetails()
+void Airport::setplanedetails()			// set plane details
 {
 	string first = "PLANE";
 	int id = rand() % 300 + 100;
 	string aa = to_string(id);
 	string last = "FLY";
 	string ID = first + aa + last;
-	for (int index = 0; index < aeroplane.size(); index++)
+	for (int index = 0; index < plane_list.size(); index++)
 	{
-		if (ID == aeroplane[index].getplaneID())
+		if (ID == plane_list[index].getplaneID())
 		{
 			setplanedetails();
 		}
@@ -50,18 +48,16 @@ void Airport::setplanedetails()
 		capacity = 200;
 	}
 	plane.setcapacity(capacity);
-	aeroplane.push_back(plane);
+	plane_list.push_back(plane);
 }
 
-int Airport::generate_request(int check)
+int Airport::generate_request(int check,int simulation_time)		// generate request randomly
 {
 	int random=0,check_time=0;
 	time_t rawtime;
-	struct tm *info;
 	time(&rawtime);
-	info = localtime(&rawtime);
 	check_time = rawtime;
-	random = rand() % 25 + 5;
+	random = rand() % 30 + 5;
 	srand(time(NULL));
 	while (1)
 	{
@@ -78,7 +74,7 @@ int Airport::generate_request(int check)
 			cout << info->tm_hour << ":" << info->tm_min << ":" << info->tm_sec << endl;
 			return random;
 		}
-		else if (rawtime > (check + 120))
+		else if (rawtime > (check + simulation_time))
 		{
 			return -1;
 		}
@@ -93,9 +89,8 @@ void Airport::landing_request()
 	request.setrequest_type("Landing");
 	cout << "Request type: " << '\t'<< request.getrequest_type() << endl;
 	cout << "*********************************************************" << endl;
-	Landing.push_back(request);
-	landing.push(Landing[landing_requestcount]);
-	landing_requestcount++;
+	landing.push(request); 
+	request_count++;
 }
 
 void Airport::takeoff_request()
@@ -105,79 +100,70 @@ void Airport::takeoff_request()
 	request.setrequest_type("Takeoff");
 	cout << "Request type: " << '\t' << request.getrequest_type() << endl;
 	cout << "*********************************************************" << endl;
-	take_off.push_back(request);
-	takeoff.push(take_off[takeoff_requestcount]);
-	takeoff_requestcount++;
+	takeoff.push(request);
+	request_count++;
 }
 
-int Airport::check_runway(int new_check)
+int Airport::check_runway(int new_check, int simulation_time, int runway_time)
 {
-	if (!landing.empty())
+	if (!landing.empty())			// check whether landing queue is not empty
 	{
-		if (runway1 == 0)
+		if (runway1 == 0)			// check runway1 is free
 		{
 			runway1 = 1;
 			time_t rawtime;
-			struct tm *info;
 			time(&rawtime);
 			landing_check1 = rawtime;
-			if (new_check + 85 > rawtime)
+			if (new_check + (simulation_time - runway_time) > rawtime)
 			{
+				Landing.push_back(landing.pop());
 				Landing[landing_count].setclear_time(rawtime);
-				landing.pop();
 				landing_count++;
-				async(runwayfirst, landing_check1);
 			}
 			return 0;
 		}
-		else if (runway2 == 0)
+		else if (runway2 == 0)			// check runway2 is free
 		{
 			runway2 = 1;
 			time_t rawtime;
-			struct tm *info;
 			time(&rawtime);
 			landing_check2 = rawtime;
-			if (new_check + 85 > rawtime)
+			if (new_check + (simulation_time - runway_time) > rawtime)
 			{
+				Landing.push_back(landing.pop());
 				Landing[landing_count].setclear_time(rawtime);
-				landing.pop();
 				landing_count++;
-				async(runwaysecond, landing_check2);
 			}
 			return 0;
 		}
 	}
-	else if (!takeoff.empty())
+	else if (!takeoff.empty())			// check whether takeoff queue is not empty
 	{
-		if (runway1 == 0)
+		if (runway1 == 0)				// check runway1 is free
 		{
 			runway1 = 1;
 			time_t rawtime;
-			struct tm *info;
 			time(&rawtime);
 			takeoff_check1 = rawtime;
-			if (new_check + 85 > rawtime)
+			if (new_check + (simulation_time - runway_time) > rawtime)
 				{
+					take_off.push_back(takeoff.pop());
 					take_off[takeoff_count].setclear_time(rawtime);
-					takeoff.pop();
 					takeoff_count++;
-					async(runwayfirst, takeoff_check1);
 				}
 				return 0;
 			}
-			else if (runway2 == 0)
+			else if (runway2 == 0)				// check runway2 is free
 			{
 				runway2 = 1;
 				time_t rawtime;
-				struct tm *info;
 				time(&rawtime);
 				takeoff_check2 = rawtime;
-				if (new_check + 85 > rawtime)
+				if (new_check + (simulation_time - runway_time) > rawtime)
 				{
+					take_off.push_back(takeoff.pop());
 					take_off[takeoff_count].setclear_time(rawtime);
-					takeoff.pop();
 					takeoff_count++;
-					async(runwaysecond, takeoff_check2);
 				}
 				return 0;
 			}
@@ -185,25 +171,25 @@ int Airport::check_runway(int new_check)
 	time_t rawtime;
 	struct tm *info;
 	time(&rawtime);
-	if ((landing_check1 + 35) == rawtime)
+	if ((landing_check1 + runway_time) == rawtime)
 	{
 		landing_check1 = 0;
 		runway1 = 0;
 		return 0;
 	}
-	else if ((takeoff_check1 + 35) == rawtime)
+	else if ((takeoff_check1 + runway_time) == rawtime)
 	{
 		takeoff_check1 = 0;
 		runway1 = 0;
 		return 0;
 	}
-	if ((landing_check2 + 35) == rawtime)
+	if ((landing_check2 + runway_time) == rawtime)
 	{
 		landing_check2 = 0;
 		runway2 = 0;
 		return 0;
 	}
-	else if ((takeoff_check2 + 35) == rawtime)
+	else if ((takeoff_check2 + runway_time) == rawtime)
 	{
 	
 		takeoff_check2 = 0;
@@ -215,46 +201,35 @@ int Airport::check_runway(int new_check)
 
 void Airport::display()
 {
-	int count;
-	
-	cout << "Waiting request:" << endl;
+	cout << " Total request count is: " << request_count << endl;
+	cout << " Waiting request:" << endl;
 	landing.display();
 	takeoff.display();
-	total_endtime = total_endtime - total_starttime;
-	count = landing_count + takeoff_count;
-	cout <<'\n'<< " Total landing completed: " << landing_count << endl;
-	cout << "  takeoff completed: " << takeoff_count << endl;
-	average_waitingtime = (float)total_endtime / (float)count;
-	cout << "The Average waiting time is: " << average_waitingtime<<" sec"<<endl;
+	average_waitingtime();
 }
 
-void runwayfirst(int check)
+void Airport::average_waitingtime()
 {
-	while (1)
+	for (int index = 0; index < landing_count; index++)
 	{
-		time_t rawtime;
-		struct tm *info;
-		time(&rawtime);
-		if (rawtime == (check + 35))
-		{
-			break;
-		}
+		total_landing_starttime = total_landing_starttime + Landing[index].getrequest_time();
+		total_landing_endtime = total_landing_endtime + Landing[index].getclear_time();
 	}
+	for (int index = 0; index < takeoff_count; index++)
+	{
+		total_takeoff_starttime = total_takeoff_starttime + take_off[index].getrequest_time();
+		total_takeoff_endtime = total_takeoff_endtime + take_off[index].getclear_time();
+	}
+	total_landing_endtime = total_landing_endtime - total_landing_starttime;
+	total_takeoff_endtime = total_takeoff_endtime - total_takeoff_starttime;
+	cout << '\n' << " Total Landing completed: " << landing_count << endl;		// display the total landing complete
+	cout << " Total Takeoff completed: " << takeoff_count << endl;					// display total takeoff complete
+	average_landingtime = (float)total_landing_endtime / landing_count;					// calculate the average waiting time
+	average_takeofftime = (float)total_takeoff_endtime / takeoff_count;
+	cout << " The Average waiting time of Landing queue is: " << average_landingtime << " sec" << endl;
+	cout << " The Average waiting time of takeoff queue is: " << average_takeofftime << " sec" << endl;
 }
 
-void runwaysecond(int check)
-{
-	while (1)
-	{
-		time_t rawtime;
-		struct tm *info;
-		time(&rawtime);
-		if (rawtime == (check + 35))
-		{
-			break;
-		}
-	}
-}
 
 
 
