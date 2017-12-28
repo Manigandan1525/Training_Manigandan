@@ -1,33 +1,9 @@
-﻿Build started 12/27/2017 6:23:08 PM.
+﻿Build started 12/28/2017 2:49:25 PM.
      1>Project "C:\Users\dharman-1\Documents\Visual Studio 2013\Projects\Airport_Simulation\Airport_Simulation\Airport_Simulation.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Airport.cpp Airport_Simulation.cpp Queue.cpp
-         Queue.cpp
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\queue.cpp(23): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Airport_Simulation.cpp
          Airport_Simulation.cpp
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport_simulation.cpp(67): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-         Airport.cpp
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(22): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(32): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(63): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(65): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(75): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(123): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(126): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(139): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(142): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(158): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(161): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(174): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(177): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(186): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(121): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(137): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(156): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(172): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(236): warning C4101: 'info' : unreferenced local variable
-     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport.cpp(250): warning C4101: 'info' : unreferenced local variable
-         Generating Code...
+     1>c:\users\dharman-1\documents\visual studio 2013\projects\airport_simulation\airport_simulation\airport_simulation.cpp(66): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dharman-1\Documents\Visual Studio 2013\Projects\Airport_Simulation\Debug\Airport_Simulation.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\dharman-1\Documents\Visual Studio 2013\Projects\Airport_Simulation\Debug\Airport_Simulation.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dharman-1\Documents\Visual Studio 2013\Projects\Airport_Simulation\Debug\Airport_Simulation.lib" /MACHINE:X86 Debug\Airport.obj
          Debug\Airport_Simulation.obj
@@ -39,4 +15,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.53
+Time Elapsed 00:00:02.99
