@@ -46,7 +46,7 @@
   </songs>
   <artists>
     <artist artist_id="art1">
-      <artist_name>artist1</artist_name>
+      <artist_name>Anirudh</artist_name>
       <artistsong>
         <song-of artistsong_idref="s1"/>
         <song-of artistsong_idref="s4"/>
@@ -54,7 +54,7 @@
       </artistsong>
     </artist>
     <artist artist_id="art2">
-      <artist_name>artist2</artist_name>
+      <artist_name>ARR</artist_name>
       <artistsong>
         <song-of artistsong_idref="s2"/>
         <song-of artistsong_idref="s3"/>
@@ -65,7 +65,7 @@
   <albums>
     <album album_id="alb1">
       <compilation_album>false</compilation_album>
-      <album_name>album1</album_name>
+      <album_name>ATM</album_name>
       <albumsong>
         <song_of albumsong_idref="s1"/>
         <song_of albumsong_idref="s3"/>
@@ -73,7 +73,7 @@
     </album>
     <album album_id="alb2">
       <compilation_album>false</compilation_album>
-      <album_name>album2</album_name>
+      <album_name>VIP</album_name>
       <albumsong>
         <song_of albumsong_idref="s2"/>
         <song_of albumsong_idref="s4"/>
@@ -82,7 +82,7 @@
     </album>
     <album album_id="alb3">
       <compilation_album>true</compilation_album>
-      <album_name>album2</album_name>
+      <album_name>New_hits</album_name>
       <albumsong>
         <song_of albumsong_idref="s5"/>
         <song_of albumsong_idref="s7"/>

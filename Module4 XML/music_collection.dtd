@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <!ELEMENT music_collection (songs,artists,albums,playlist)>
+    
+    <!ELEMENT songs (song)*>
+    <!ELEMENT song (song_name,length,artist_of,album_of)>
+      <!ATTLIST song song_id ID #REQUIRED>
+    <!ELEMENT song_name (#PCDATA)>
+    <!ELEMENT length (#PCDATA)>
+    <!ELEMENT artist_of EMPTY>
+      <!ATTLIST artist idref IDREF #REQUIRED>
+    <!ELEMENT album_of EMPTY>
+      <!ATTLIST album_of idref IDREF #REQUIRED>
+    
+    <!ELEMENT artists (artist)*>
+    <!ELEMENT artist (artist_name,artist_song)>
+      <!ATTLIST artist artist_id ID #REQUIRED>
+    <!ELEMENT artist_name (#PCDATA)>
+    <!ELEMENT artist_song (song_of)*>
+    <!ELEMENT song-of EMPTY>
+      <!ATTLIST song-of idref IDREF #REQUIRED>
+    
+    <!ELEMENT albums (album)*>
+    <!ELEMENT album (compilation_album,album_name,album_song)>
+      <!ATTLIST artist artist_id ID #REQUIRED>
+    <!ELEMENT compilation_album  (#PCDATA)>
+    <!ELEMENT album_name (#PCDATA)>
+    <!ELEMENT album_song (song_of)*>
+    <!ELEMENT song_of EMPTY>
+      <!ATTLIST song_of idref IDREF #REQUIRED>
+   
+    <!ELEMENT playlist (list)*>
+    <!ELEMENT list (playlist_name,playlist_song)>
+    <!ELEMENT playlist_name (#PCDATA) >
+    <!ELEMENT playlist_song (song_list)*>
+    <!ELEMENT song_list EMPTY>
+      <!ATTLIST song_list songlist_idref IDREF #REQUIRED>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
