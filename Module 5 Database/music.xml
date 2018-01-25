@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<music_collection>
+  <songs>
+    <song id="s1">
+      <song_name>song1</song_name>
+      <length> 4:35 </length>
+      <songartist idref="art1"/>
+      <songalbum idref="alb1"/>
+    </song>
+    <song id="s2">
+      <song_name>song2</song_name>
+      <length> 5:10 </length>
+      <songartist idref="art2"/>
+      <songalbum idref="alb2"/>
+    </song>
+    <song id="s3">
+      <song_name>song3</song_name>
+      <length> 6:37 </length>
+      <songartist idref="art2"/>
+      <songalbum idref="alb1"/>
+    </song>
+    <song id="s4">
+      <song_name>song4</song_name>
+      <length> 4:55 </length>
+      <songartist idref="art1"/>
+      <songalbum idref="alb2"/>
+    </song>
+    <song id="s5">
+      <song_name>song5</song_name>
+      <length> 4:23 </length>
+      <songartist idref="art1"/>
+      <songalbum idref="alb3"/>
+    </song>
+    <song id="s6">
+      <song_name>song6</song_name>
+      <length> 4:50 </length>
+      <songartist idref="art2"/>
+      <songalbum idref="alb2"/>
+    </song>
+    <song id="s7">
+      <song_name>song7</song_name>
+      <length> 5:30 </length>
+      <songartist idref="art1"/>
+      <songalbum idref="alb3"/>
+    </song>
+  </songs>
+  <artists>
+    <artist id="art1">
+      <artist_name>Anirudh</artist_name>
+      <artistsong>
+        <song_of_artist idref="s1"/>
+        <song_of_artist idref="s4"/>
+        <song_of_artist idref="s5"/>
+        <song_of_artist idref="s7"/>
+      </artistsong>
+    </artist>
+    <artist id="art2">
+      <artist_name>ARR</artist_name>
+      <artistsong>
+        <song_of_artist idref="s2"/>
+        <song_of_artist idref="s3"/>
+        <song_of_artist idref="s6"/>
+      </artistsong>
+
+    </artist>
+  </artists>
+  <albums>
+    <album id="alb1">
+      <compilation_album>false</compilation_album>
+      <album_name>ATM</album_name>
+      <albumsong>
+        <song_of_album idref="s1"/>
+        <song_of_album idref="s3"/>
+      </albumsong>
+    </album>
+    <album id="alb2">
+      <compilation_album>false</compilation_album>
+      <album_name>VIP</album_name>
+      <albumsong>
+        <song_of_album idref="s2"/>
+        <song_of_album idref="s4"/>
+        <song_of_album idref="s6"/>
+      </albumsong>
+    </album>
+    <album id="alb3">
+      <compilation_album>true</compilation_album>
+      <album_name>New_hits</album_name>
+      <albumsong>
+        <song_of_album idref="s5"/>
+        <song_of_album idref="s7"/>
+      </albumsong>
+    </album>
+  </albums>
+  <playlist>
+    <list>
+      <playlist_name>favourites</playlist_name>
+      <playlist_song>
+        <song_of_playlist idref="s2"/>
+        <song_of_playlist idref="s3"/>
+        <song_of_playlist idref="s5"/>
+      </playlist_song>
+    </list>
+  </playlist>
+</music_collection>
