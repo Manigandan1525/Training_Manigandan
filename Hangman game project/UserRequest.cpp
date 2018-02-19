@@ -1,6 +1,5 @@
 #pragma once
 #include "UserRequest.h"
-
 string UserName;
 static UserRequest *userReq;
 UserRequest::UserRequest()

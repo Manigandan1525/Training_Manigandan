@@ -1,9 +1,6 @@
 #include "GameData.h"
 
 
-GameData::GameData()
-{
-}
 
 void GameData::set_usergameid(string Id)
 {

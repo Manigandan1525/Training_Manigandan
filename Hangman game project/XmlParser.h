@@ -16,6 +16,5 @@ private:
 public:
 	vector<GameData> parser(char*);
 	string receive_data(char*);
-	XmlParser();
 };
 

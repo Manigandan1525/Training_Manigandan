@@ -3,12 +3,7 @@
 WSADATA WSAData;			//declaring the variable to connect server
 SOCKET server;
 SOCKADDR_IN addr;
-client::client()
-{
-}
-client::~client()
-{
-}
+
 string client::receive_details()
 {
 	int ReceivedBytes;
@@ -18,31 +13,38 @@ string client::receive_details()
 
 	if (ReceivedBytes > 0)
 	{
-		value = buffer;
+		return buffer;						//return string value
 	}
-	else
+	else if(ReceivedBytes<=0)
 	{
 		system("cls");
-		cout << "Client disconnected" << endl;
+		cout << "Server Disconnected" << endl;
+		Sleep(2000);
+		exit(0);
 	}
-	return value;		//return string value
 }
 
 void client::send_request(string gamedetails)
-{
-	char tab2[1024];
-	strcpy_s(tab2, gamedetails.c_str());				//perform string copy operation
-	send(server, tab2, sizeof(tab2), 0);			//send data to server
-	return;
+{				
+	char buffer[1024];
+	strcpy_s(buffer, gamedetails.c_str());
+	send(server, buffer, sizeof(buffer), 0);			//send data to server
 }
 
 void client::connection()
-{
-
-	WSAStartup(MAKEWORD(2, 0), &WSAData);
+{	
+	int Result=WSAStartup(MAKEWORD(2, 0), &WSAData);
 	server = socket(AF_INET, SOCK_STREAM, 0);
-	addr.sin_addr.s_addr = inet_addr("172.29.124.236"); 
+	addr.sin_addr.s_addr = inet_addr(SERVER); 
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(138);
-	connect(server, (SOCKADDR *)&addr, sizeof(addr));		//connect to server
+	addr.sin_port = htons(PORT_NUMBER);
+	Result == connect(server, (SOCKADDR *)&addr, sizeof(addr));				//connect to server
+	if(Result==SOCKET_ERROR)
+	{
+		cout << "Connection Failed" << endl;
+	}	
+	else
+	{
+		cout << "Connect Succesfully" << endl;
+	}
 }

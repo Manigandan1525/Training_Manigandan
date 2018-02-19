@@ -81,12 +81,5 @@ int Graphical_design::gotoxyz(const int _x, const int _y)
 	SetConsoleCursorPosition(consoleHandler, coords);
 }
 
-void Graphical_design::setColor(const WORD _newColorToSet)
-{
-	if (consoleHandler == INVALID_HANDLE_VALUE)
-		return;
-
-	SetConsoleTextAttribute(consoleHandler, _newColorToSet);
-}
 
 

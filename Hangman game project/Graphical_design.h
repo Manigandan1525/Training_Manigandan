@@ -23,7 +23,6 @@ public:
 	int whereY(void);
 	int gotoxy(const int _x, const int _y);
 	int gotoxyz(const int _x, const int _y);
-	void setColor(const WORD _newColorToSet);
 
 	Graphical_design();
 	~Graphical_design();

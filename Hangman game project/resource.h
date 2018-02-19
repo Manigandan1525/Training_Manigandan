@@ -43,3 +43,7 @@
 #define  LOSE "LOSE"
 
 #define  WIN "WIN"
+
+#define SERVER "172.29.124.236"
+
+#define PORT_NUMBER 138

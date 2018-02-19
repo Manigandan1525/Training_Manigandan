@@ -1,9 +1,5 @@
 #include "XmlParser.h"
 
-XmlParser::XmlParser()
-{
-}
-
 vector<GameData> XmlParser::parser(char* buffer)			//parse xml data
 {
 	string name;
@@ -12,7 +8,6 @@ vector<GameData> XmlParser::parser(char* buffer)			//parse xml data
 	xml_node<> *node = document.first_node();
 	xml_node<> *node1 = node->first_node();
 	name = node1->name();
-
 	if (name == JOIN)
 	{
 		return parse_joingame(&document);
@@ -39,7 +34,6 @@ vector<GameData> XmlParser::parse_joingame(xml_document<>* document)		//parse th
 		while (element != NULL)
 		{
 			gameid.push_back(element->value());
-
 			element = element->next_sibling();
 		}
 		i++;
@@ -67,7 +61,6 @@ vector<GameData> XmlParser::parse_creategame(xml_document<>* document)			//parse
 	vector<string> difficulty;
 	xml_node<> *node2 = node->first_node(DIFFICULTYLEVEL);
 	xml_node<>*element1 = node2->first_node();
-
 	while (element1 != NULL)
 	{
 	    difficulty.push_back(element1->value());

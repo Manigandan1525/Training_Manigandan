@@ -31,6 +31,6 @@ public:
 	vector<string> get_gameoption();
 	void set_gameid(vector<string> id);
 	vector<string> get_gameid();
-	GameData();
+	//GameData();
 };
 

@@ -11,7 +11,6 @@ private:
 	~UserRequest();
 	client Request;
 public:
-
 	static void Instantiate();
 	static bool Instance();
 

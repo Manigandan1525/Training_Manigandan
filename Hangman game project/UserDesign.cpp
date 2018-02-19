@@ -1,5 +1,5 @@
 #include "UserDesign.h"
-string Name;
+//string Name;
 UserDesign::UserDesign()
 {
 	UserRequest::Instantiate();
@@ -295,7 +295,7 @@ void UserDesign::creategame(vector<GameData> Detail)
 void UserDesign::game_info(vector<GameData> GameInfo)				//display game details
 {
 	int Turn;
-	string temp;
+	string word;
 	size_t Index;
 	string info = GameInfo[0].get_remainingguess();
 	Turn = atoi(info.c_str());
@@ -304,15 +304,15 @@ void UserDesign::game_info(vector<GameData> GameInfo)				//display game details
 	int check = stoi(GameInfo[0].get_remainingguess());
 	if (check != 0)
 	{
-		temp = GameInfo[0].get_words();
+		word = GameInfo[0].get_words();
 	}
 	cout << "			HANGMAN GAME" << "\n" << endl;
 	cout << "Game ID : " << GameInfo[0].get_usergameid() << endl;
 	cout << "\n\n";
 	cout << "Word" << "\t";
-	for (Index = 0; Index < temp.size(); Index++)
+	for (Index = 0; Index < word.size(); Index++)
 	{
-		cout << temp[Index] << " ";
+		cout << word[Index];
 	}
 	cout << endl;
 	cout << "\n";
@@ -414,7 +414,6 @@ void UserDesign::hangman()			//display hangman letter
 	gf.box(51, 6, 52, 10);
 	gf.box(52, 6, 56, 7);
 	gf.box(55, 6, 56, 10);
-
 
 	gf.box(59, 6, 63, 6);
 	gf.box(58, 6, 59, 10);

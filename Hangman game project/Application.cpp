@@ -45,32 +45,13 @@ int main()
 		}
 	}
 	system("cls");
-	if (choice == 1){						//choose windows application
+	if (choice == 1)				//choose windows application
+	{
 		HWND hWnd = GetConsoleWindow();
 		if (hWnd != 0) {
 			ShowWindow(hWnd, SW_HIDE);
 		}
 		form.InitializeComponent();
-		while(1)
-		{
-			Information = client.receive_details();
-		strcpy_s(option, Information.c_str());
-		strcpy(new_data, Information.c_str());
-		value = parse.receive_data(option);
-		details = parse.parser(new_data);
-		if (value == JOIN)
-		{
-			form.join_game(details);
-		}
-		else if (value == CATEGORYLIST)
-		{
-			form.creategame(details);
-		}
-		else if (value == GAMEINFO)
-		{
-			form.game_info(details);
-		}
-		}
 		form.ShowDialog();
 	}
 	else                                    //choose console applicati0n 
@@ -83,7 +64,7 @@ int main()
 			if (!Information.empty())
 			{
 				strcpy_s(option, Information.c_str());
-				strcpy(new_data, Information.c_str());
+				strcpy_s(new_data, Information.c_str());
 				value = parse.receive_data(option);
 				details = parse.parser(new_data);
 				if (value == JOIN)

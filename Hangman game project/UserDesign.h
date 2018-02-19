@@ -14,6 +14,7 @@ private:
 	GameData detail;
 	Graphical_design gf;
 	client ch;
+	string Name;
 	void game_option();
 	void chance();
 	void hangman();
